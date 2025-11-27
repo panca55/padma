@@ -1,4 +1,4 @@
-import { Award, Briefcase, MapPin, Shield, Target, TrendingUp, Users } from "lucide-react";
+import { Award, Briefcase, Clock, DollarSign, MapPin, Shield, Target, TrendingUp, Users, Zap } from "lucide-react";
 
 // Data untuk statistik perusahaan
  export const stats = [
@@ -39,18 +39,22 @@ import { Award, Briefcase, MapPin, Shield, Target, TrendingUp, Users } from "luc
   export const benefits = [
     {
       title: 'Time Saving',
-      description: 'Focus on your core business while we handle all HR and operational workforce processes.'
+      description: 'Focus on your core business while we handle all HR and operational workforce processes.',
+      icon: Clock
     },
     {
       title: 'Fast & Flexible Manpower Supply',
-      description: 'Immediate access to a pool of qualified, pre-screened workers to match urgent or changing demands.'
+      description: 'Immediate access to a pool of qualified, pre-screened workers to match urgent or changing demands.',
+      icon: Zap
     },
     {
       title: 'Cost Efficiency',
-      description: 'Reduce operational costs related to recruitment, training, payroll, and employee management.'
+      description: 'Reduce operational costs related to recruitment, training, payroll, and employee management.',
+      icon: DollarSign
     },
     {
       title: 'Regulatory Compliance',
-      description: 'All our HR processes and contracts follow Indonesian labor laws — minimizing your legal risks.'
+      description: 'All our HR processes and contracts follow Indonesian labor laws — minimizing your legal risks.',
+      icon: Shield
     }
   ];
