@@ -28,8 +28,8 @@ export default async function handler(req: any, res: any) {
     }
     
     // Google Sheets API configuration
-    const SHEET_ID = process.env.GOOGLE_SHEET_ID;
-    const API_KEY = process.env.GOOGLE_SHEETS_API_KEY;
+    const SHEET_ID = process.env.GOOGLE_SHEET_ID || "1B98EgvA1IlxD_eVzWrtITizzlTm2FXyxDtVhhuFoyZM";
+    const API_KEY = process.env.GOOGLE_SHEETS_API_KEY || "AIzaSyBNFxjqlf9io2OcS3Q9KCG3AFzOQaQ3cS8";
     const RANGE = 'Sheet1!A:E';
 
     console.log('Environment variables check:', { 
