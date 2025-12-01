@@ -1,6 +1,6 @@
 // src/pages/PartnerPage.tsx
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 
 interface FormData {
   name: string;
@@ -10,7 +10,7 @@ interface FormData {
 }
 
 export default function PartnerPage() {
-  const { t } = useTranslation();
+//   const { t } = useTranslation();
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',

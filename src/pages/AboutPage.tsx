@@ -1,6 +1,6 @@
 // src/pages/AboutPage.tsx
 import { Target, Eye } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 import briefcase from '../assets/clients/briefcase.png';
 import handshake from '../assets/clients/handshake.png';
 import material from '../assets/clients/material.png';
@@ -34,7 +34,7 @@ const services = [
 ];
 
 export default function AboutPage() {
-  const { t } = useTranslation();
+//   const { t } = useTranslation();
 
   return (
     <div className="min-h-screen bg-white">

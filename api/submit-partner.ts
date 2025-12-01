@@ -1,8 +1,11 @@
-import { NextRequest, NextResponse } from 'next/server';
+export default async function handler(req: any, res: any) {
+  // Only allow POST method
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method Not Allowed' });
+  }
 
-export async function POST(request: NextRequest) {
   try {
-    const data = await request.json();
+    const data = req.body;
     
     // Google Sheets API configuration
     const SHEET_ID = process.env.GOOGLE_SHEET_ID;
@@ -10,10 +13,7 @@ export async function POST(request: NextRequest) {
     const RANGE = 'Sheet1!A:E';
 
     if (!SHEET_ID || !API_KEY) {
-      return NextResponse.json(
-        { error: 'Missing Google Sheets configuration' },
-        { status: 500 }
-      );
+      return res.status(500).json({ error: 'Missing Google Sheets configuration' });
     }
 
     // Prepare the data for Google Sheets
@@ -45,16 +45,13 @@ export async function POST(request: NextRequest) {
       throw new Error('Failed to submit to Google Sheets');
     }
 
-    return NextResponse.json({ 
+    return res.status(200).json({ 
       success: true, 
       message: 'Data submitted successfully' 
     });
 
   } catch (error) {
     console.error('Error:', error);
-    return NextResponse.json(
-      { error: 'Internal Server Error' },
-      { status: 500 }
-    );
+    return res.status(500).json({ error: 'Internal Server Error' });
   }
 }
