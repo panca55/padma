@@ -14,8 +14,10 @@ import aceh from '../assets/clients/aceh.png';
 import moladin from '../assets/clients/moladin.png';
 import { ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export default function ClientsSections() {
+  const { t } = useTranslation();
   const clientLogos = [
     { src: cimb, alt: 'CIMB Niaga' },
     { src: cimbFinance, alt: 'CIMB Niaga Finance' },
@@ -39,7 +41,7 @@ export default function ClientsSections() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12" data-aos="fade-up">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
-              Our Clients
+              {t('ourClients')}
             </h2>
             <div className="mt-8 w-32 h-1 bg-gradient-to-r from-[#155DFB] to-[#00B7DB] mx-auto rounded-full"></div>
           </div>
@@ -109,7 +111,7 @@ export default function ClientsSections() {
               to="/clients-services"
               className="inline-flex items-center px-8 py-4 bg-blue-600 text-white font-bold text-lg rounded-full hover:bg-blue-700 transition-all duration-300 shadow-xl gap-3"
             >
-              View Our Client & Services
+              {t('viewServices')}
               <ChevronRight className="w-6 h-6" />
             </Link>
           </div>

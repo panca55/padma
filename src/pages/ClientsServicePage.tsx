@@ -17,50 +17,67 @@ import moladin from '../assets/clients/moladin.png';
 
 const clientServices = [
   { name: 'CIMB Niaga', logo: cimb, services: [
-    { type: 'Headhunter', items: ['Mortgage Alternate Channel Manager (MACM)', 'Mortgage Relationship Manager (RMM)', 'Preferred Relationship Manager (RMP)', 'Emerging Business Banking Relationship Officer (RMEBB)', 'Relationship Manager Development Program (RMDP)'] },
-    { type: 'Man Power Outsourcing - PKWT & Mitra', items: ['Mortgage Sales Representative (MSR)', 'Direct Sales Card Supervisor & Direct Sales Card', 'Sales QRIS & Merchant', 'DSR Funding Supervisor & DSR Funding', 'Hajj Branch Sales Representative', 'Community Sales Executive Supervisor & Sales Officer', 'Branch Sales Executive Supervisor & Sales Officer', 'Tele Sales Officer Supervisor & Sales Officer'] }
+    { type: 'Headhunter', itemKeys: ['mortgageAlternateChannelManager', 'mortgageRelationshipManager', 'preferredRelationshipManager', 'emergingBusinessBankingRO', 'relationshipManagerDevProgram'] },
+    { type: 'Man Power Outsourcing - PKWT & Mitra', itemKeys: ['mortgageSalesRepresentative', 'directSalesCardSupervisor', 'salesQRISMerchant', 'dsrFundingSupervisor', 'hajjBranchSalesRep', 'communitySalesExecSupervisor', 'branchSalesExecSupervisor', 'teleSalesOfficerSupervisor'] }
   ]},
   { name: 'CIMB Niaga Finance', logo: cimbFinance, services: [
-    { type: 'Headhunter', items: ['Area Manager (AM)', 'Sales Manager (SM)', 'Branch Manager (BM)', 'RM Corporate (RM)', 'Sales Officer (SO)'] },
-    { type: 'Man Power Outsourcing - PKWT & Mitra', items: ['CMO Used Car & New Car', 'Sales Branch Initiative', 'Branch Relationship Officer', 'Surveyor', 'Direct Sales & Aggregator Refinancing', 'Desk Collection, Admin Collection, & Reminder Call', 'Field Collection, Mid Range Collection, Recovery Collection', 'Problem Account Officer, Hardcore Officer'] }
+    { type: 'Headhunter', itemKeys: ['areaManager', 'salesManager', 'branchManager', 'rmCorporate', 'salesOfficer'] },
+    { type: 'Man Power Outsourcing - PKWT & Mitra', itemKeys: ['cmoUsedCarNewCar', 'salesBranchInitiative', 'branchRelationshipOfficer', 'surveyor', 'directSalesAggregatorRef', 'deskCollectionAdmin', 'fieldCollectionMidRange', 'problemAccountOfficer'] }
   ]},
   { name: 'OCBC', logo: ocbc, services: [
-    { type: 'Man Power Outsourcing - PKWT & Mitra', items: ['Agency Sales Manager', 'Supervisor / Team Leader', 'Funding Mobile Acquisition', 'Personal Loan (KTA) Direct Sales', 'Credit Card Direct Sales', 'Admin Support'] }
+    { type: 'Man Power Outsourcing - PKWT & Mitra', itemKeys: ['agencySalesManager', 'supervisorTeamLeader', 'fundingMobileAcquisition', 'personalLoanDirectSales', 'creditCardDirectSales', 'adminSupport'] }
   ]},
   { name: 'KB Bukopin', logo: kbbukopin, services: [
-    { type: 'Headhunter – Permanent Staff', items: ['Relationship Banking Officer (RBO)', 'Priority Banking Officer (PBO)', 'RM Mortgage', 'RM Small Medium Enterprises', 'AO Consumer'] }
+    { type: 'Headhunter – Permanent Staff', itemKeys: ['relationshipBankingOfficer', 'priorityBankingOfficer', 'rmMortgage', 'rmSmallMediumEnterprises', 'aoConsumer'] }
   ]},
   { name: 'Allo Bank', logo: alloBank, services: [
-    { type: 'Man Power Outsourcing', items: ['Business Leader', 'Direct Sales', 'Admin Support', 'SPG/SPB'] }
+    { type: 'Man Power Outsourcing', itemKeys: ['businessLeader', 'directSales', 'adminSupport', 'spgSpb'] }
   ]},
   { name: 'Nobu Bank', logo: nobu, services: [
-    { type: 'Man Power Outsourcing', items: ['Sales Supervisor / Team Leader', 'Junior Sales Officer', 'Senior Sales Officer'] }
+    { type: 'Man Power Outsourcing', itemKeys: ['supervisorTeamLeader', 'juniorSalesOfficer', 'seniorSalesOfficer'] }
   ]},
   { name: 'Bank Mayapada', logo: mayapada, services: [
-    { type: 'Man Power Outsourcing', items: ['Supervisor / Team Leader', 'Personal Loan Sales Officer', 'Credit Card Sales Officer', 'Direct Sales', 'Telesales'] }
+    { type: 'Man Power Outsourcing', itemKeys: ['supervisorTeamLeader', 'personalLoanSalesOfficer', 'creditCardSalesOfficer', 'directSales', 'telesales'] }
   ]},
   { name: 'Bank AS', logo: bankas, services: [
-    { type: 'Headhunter - Permanent', items: ['Relationship Officer Lending', 'Relationship Officer Funding', 'Operational Officer Head of Branch', 'Head of Lending/Funding Division', 'Compliance & Risk Management Executive'] }
+    { type: 'Headhunter - Permanent', itemKeys: ['relationshipOfficerLending', 'relationshipOfficerFunding', 'operationalOfficerHeadBranch', 'headLendingFundingDivision', 'complianceRiskManagementExec'] }
   ]},
   { name: 'Bank INA', logo: ina, services: [
-    { type: 'Man Power Outsourcing', items: ['Sales Supervisor / Team Leader', 'Junior Sales Acquisition', 'Senior Sales Acquisition', 'Executive Sales Acquisition'] }
+    { type: 'Man Power Outsourcing', itemKeys: ['supervisorTeamLeader', 'juniorSalesAcquisition', 'seniorSalesAcquisition', 'executiveSalesAcquisition'] }
   ]},
   { name: 'Hana Bank', logo: hana, services: [
-    { type: 'Man Power Outsourcing', items: ['Credit Without Collateral (KTA): Repeat, Top Up and Increase Limit', 'Quick Credit: Increase Limit'] }
+    { type: 'Man Power Outsourcing', itemKeys: ['creditWithoutCollateralRepeat', 'quickCreditIncreaseLimit'] }
   ]},
   { name: 'Bank Muamalat', logo: muamalat, services: [
-    { type: 'Man Power Outsourcing', items: ['Direct Sales Haji', 'Branch Sales Officer', 'Multifinance: Umroh', 'Household Loan Credit (KPR)', 'Credit Without Collateral (KTA)'] }
+    { type: 'Man Power Outsourcing', itemKeys: ['directSalesHaji', 'branchSalesOfficer', 'multifinanceUmroh', 'householdLoanCredit', 'creditWithoutCollateral'] }
   ]},
   { name: 'Bank Aceh', logo: aceh, services: [
-    { type: 'Man Power Outsourcing', items: ['Direct Sales Funding', 'Direct Sales Qris Merchant'] }
+    { type: 'Man Power Outsourcing', itemKeys: ['directSalesFunding', 'directSalesQrisMerchant'] }
   ]},
   { name: 'Moladin', logo: moladin, services: [
-    { type: 'Headhunter – Permanent Staff', items: ['Account Officer - SME', 'Agency Officer', 'Supervisor', 'Collection'] }
+    { type: 'Headhunter – Permanent Staff', itemKeys: ['accountOfficerSME', 'agencyOfficer', 'supervisor', 'collection'] }
   ]},
 ];
 
 export default function ClientsServicePage() {
   const { t } = useTranslation();
+
+  const getServiceTypeTranslation = (serviceType: string) => {
+    switch (serviceType) {
+      case 'Headhunter':
+        return t('headhunterType');
+      case 'Man Power Outsourcing - PKWT & Mitra':
+        return t('manPowerOutsourcingType');
+      case 'Man Power Outsourcing':
+        return t('manPowerOutsourcing');
+      case 'Headhunter – Permanent Staff':
+        return t('headhunterPermanentStaff');
+      case 'Headhunter - Permanent':
+        return t('headhunterPermanent');
+      default:
+        return serviceType;
+    }
+  };
 
   return (
     <div className="min-h-screen bg-white dark:from-gray-900 dark:via-gray-900 dark:to-gray-900">
@@ -104,19 +121,15 @@ export default function ClientsServicePage() {
                   {client.services.map((service, idx) => (
                     <div key={idx}>
                       <h4 className="font-bold text-[#155DFB] text-base mb-4">
-                        {service.type === 'Headhunter' ? 'Headhunter' :
-                        service.type === 'Man Power Outsourcing - PKWT & Mitra' ? 'Man Power Outsourcing - PKWT & Mitra' :
-                        service.type === 'Man Power Outsourcing' ? 'Man Power Outsourcing' :
-                        service.type === 'Headhunter – Permanent Staff' ? 'Headhunter' :
-                        service.type === 'Headhunter - Permanent' ? 'Headhunter' : service.type}
+                        {getServiceTypeTranslation(service.type)}
                       </h4>
                       <ul className="space-y-3">
-                        {service.items.map((item, i) => (
+                        {service.itemKeys.map((itemKey, i) => (
                           <li key={i} className="flex items-start gap-3 text-gray-700">
                             <div className="w-5 h-5 rounded-full border-2 border-[#155DFB] flex items-center justify-center flex-shrink-0 mt-0.5">
                               <Check className="w-3 h-3 text-[#155DFB]" />
                             </div>
-                            <span className="text-sm leading-relaxed">{item}</span>
+                            <span className="text-sm leading-relaxed">{t(itemKey)}</span>
                           </li>
                         ))}
                       </ul>
@@ -151,14 +164,13 @@ export default function ClientsServicePage() {
             </a>
             <a
               href="#home"
-              className="px-8 py-4 bg-transparent border-2 font-bold text-base rounded-full hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
-              style={{
-                borderImage: 'linear-gradient(to right, #155DFB, #00B7DB) 1',
-                color: '#155DFB'
-              }}
+              className="relative px-8 py-4 bg-white font-bold text-base rounded-full hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 overflow-hidden group"
             >
-              {t('backHome')}
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="absolute inset-0 rounded-full p-[2px] bg-gradient-to-r from-[#155DFB] to-[#00B7DB]">
+                <div className="w-full h-full bg-white rounded-full"></div>
+              </div>
+              <span className="relative z-10 text-[#155DFB] group-hover:text-[#155DFB]">{t('backHome')}</span>
+              <svg className="relative z-10 w-4 h-4 text-[#155DFB] group-hover:text-[#155DFB]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </a>

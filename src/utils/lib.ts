@@ -16,19 +16,19 @@ import uil from '../assets/clients/uil.png';
   // Data layanan
   export const services = [
     {
-      title: 'Business Process Outsourcing (BPO)',
-      description: 'Contracting of the operations and responsibilities of a specific business process',
-      benefits: ['Cost efficiency and flexibility', 'Focus on core competencies', 'Example: sales outsource by hiring man power and managing sales targets']
+      titleKey: 'bpo',
+      descKey: 'bpoDesc',
+      benefitKeys: ['bpoBenefit1', 'bpoBenefit2', 'bpoBenefit3']
     },
     {
-      title: 'Man Power Outsourcing (MPO)',
-      description: 'Hiring and retaining talent through external service provider',
-      benefits: ['Cut cost', 'Get the right candidates', 'Expand capacity']
+      titleKey: 'mpo',
+      descKey: 'mpoDesc',
+      benefitKeys: ['mpoBenefit1', 'mpoBenefit2', 'mpoBenefit3']
     },
     {
-      title: 'Headhunter',
-      description: 'Recruiting professionals from mid-level to executive roles',
-      benefits: ['Attract Passive Candidates', 'Headhunter experience to spot the best talent', 'Maintain confidentiality for certain roles']
+      titleKey: 'headhunter',
+      descKey: 'headhunterDesc',
+      benefitKeys: ['headhunterBenefit1', 'headhunterBenefit2', 'headhunterBenefit3']
     }
   ];
 
@@ -43,23 +43,23 @@ import uil from '../assets/clients/uil.png';
   // Data keunggulan
   export const benefits = [
     {
-      title: 'Time Saving',
-      description: 'Focus on your core business while we handle all HR and operational workforce processes.',
+      titleKey: 'timeSaving',
+      descKey: 'timeSavingDesc',
       icon: time
     },
     {
-      title: 'Fast & Flexible Manpower Supply',
-      description: 'Immediate access to a pool of qualified, pre-screened workers to match urgent or changing demands.',
+      titleKey: 'fastFlexible',
+      descKey: 'fastFlexibleDesc',
       icon: person
     },
     {
-      title: 'Cost Efficiency',
-      description: 'Reduce operational costs related to recruitment, training, payroll, and employee management.',
+      titleKey: 'costEfficiency',
+      descKey: 'costEfficiencyDesc',
       icon: uil
     },
     {
-      title: 'Regulatory Compliance',
-      description: 'All our HR processes and contracts follow Indonesian labor laws — minimizing your legal risks.',
+      titleKey: 'regulatoryCompliance',
+      descKey: 'regulatoryComplianceDesc',
       icon: carbon
     }
   ];

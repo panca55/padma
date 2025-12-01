@@ -1,6 +1,6 @@
 // src/pages/AboutPage.tsx
 import { Target, Eye } from 'lucide-react';
-// import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import briefcase from '../assets/clients/briefcase.png';
 import handshake from '../assets/clients/handshake.png';
 import material from '../assets/clients/material.png';
@@ -17,24 +17,24 @@ const values = [
 
 const services = [
   {
-    title: "Business Process Outsourcing (BPO)",
-    description: "Contracting of the operations and responsibilities of a specific business process to an external service provider.",
-    points: ["Cost efficiency and flexibility", "Focus on core competencies", "Expertise from outsourcing by hiring men power and managing their targets"]
+    titleKey: "bpo",
+    descKey: "bpoDesc",
+    pointKeys: ["bpoBenefit1", "bpoBenefit2", "bpoBenefit3"]
   },
   {
-    title: "Man Power Outsourcing (MPO)",
-    description: "Hiring and managing talent through external service provider.",
-    points: ["Cost effective", "Get the right candidates", "Expand quickly"]
+    titleKey: "mpo",
+    descKey: "mpoDesc", 
+    pointKeys: ["mpoBenefit1", "mpoBenefit2", "mpoBenefit3"]
   },
   {
-    title: "Headhunter",
-    description: "Recruiting professionals from the mid-level to executive positions.",
-    points: ["Active Pipeline Candidates", "Headhunter experience to spot the best talent", "Maximum opportunity for various roles"]
+    titleKey: "headhunter",
+    descKey: "headhunterDesc",
+    pointKeys: ["headhunterBenefit1", "headhunterBenefit2", "headhunterBenefit3"]
   }
 ];
 
 export default function AboutPage() {
-//   const { t } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <div className="min-h-screen bg-white">
@@ -43,10 +43,10 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-white"></div>
         <div className="relative max-w-7xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-blue-600 mb-6" data-aos="fade-up">
-            About Us
+            {t('aboutUsTitle')}
           </h1>
           <p className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="200">
-            Get to know the passionate team and core values that drive Padma Raharja Sentosa. We believe that by upholding integrity and excellence, we can deliver unmatched talent and service to all our partners.
+            {t('aboutPageDesc')}
           </p>
         </div>
       </section>
@@ -58,10 +58,10 @@ export default function AboutPage() {
             {/* Text Content */}
             <div data-aos="fade-right">
               <h2 className="text-4xl md:text-5xl font-bold text-blue-600 mb-6">
-                Padma is Your Trusted Partner
+                {t('padmaPartner')}
               </h2>
               <p className="text-gray-700 leading-relaxed text-lg">
-                PT Padma Raharja Sentosa is a trusted and reliable outsource and headhunter company that strategically supports your business growth. Established in 2020, Padma proudly employs over 2,000+ top talents across various industries in Indonesia. Managed by experienced leaders, we are committed to providing excellent, swift, and professional services to our business partners and talents.
+                {t('aboutPageContent')}
               </p>
             </div>
 
@@ -90,9 +90,9 @@ export default function AboutPage() {
                   <Eye className="w-8 h-8 text-blue-600" />
                 </div>
                 <div>
-                  <h3 className="text-3xl font-bold text-blue-600 mb-4">Our Vision</h3>
+                  <h3 className="text-3xl font-bold text-blue-600 mb-4">{t('vision')}</h3>
                   <p className="text-gray-700 text-lg leading-relaxed">
-                    The most trusted and reliable partner in outsourcing and headhunter service in Indonesia
+                    {t('visionText')}
                   </p>
                 </div>
               </div>
@@ -105,19 +105,19 @@ export default function AboutPage() {
                   <Target className="w-8 h-8 text-blue-600" />
                 </div>
                 <div>
-                  <h3 className="text-3xl font-bold text-blue-600 mb-4">Our Mission</h3>
+                  <h3 className="text-3xl font-bold text-blue-600 mb-4">{t('mission')}</h3>
                   <ul className="space-y-3 text-gray-700 text-lg">
                     <li className="flex items-start gap-3">
                       <span className="text-blue-600 mt-1">•</span>
-                      <span>Hire excellent and competitive professionals in the industry</span>
+                      <span>{t('mission1')}</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="text-blue-600 mt-1">•</span>
-                      <span>Collaborate with various corporations in multi industries</span>
+                      <span>{t('mission3')}</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="text-blue-600 mt-1">•</span>
-                      <span>Implement high standard work ethics</span>
+                      <span>{t('mission2')}</span>
                     </li>
                   </ul>
                 </div>
@@ -132,7 +132,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16" data-aos="fade-up">
             <h2 className="text-4xl md:text-5xl font-bold text-blue-600 mb-6">
-              Our Values
+              {t('ourValues')}
             </h2>
           </div>
 
@@ -146,7 +146,7 @@ export default function AboutPage() {
                   <img src={value.icon} alt={value.title} className="w-12 h-12" />
                 </div>
                 <h4 className="text-sm font-semibold text-gray-900 leading-tight">
-                  {value.title}
+                  {t(value.title.toLowerCase().replace(' ', ''))}
                 </h4>
               </div>
             ))}
@@ -159,7 +159,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16" data-aos="fade-up">
             <h2 className="text-4xl md:text-5xl font-bold text-blue-600 mb-6">
-              Our Services
+              {t('ourServices')}
             </h2>
           </div>
 
@@ -172,16 +172,16 @@ export default function AboutPage() {
                 data-aos-delay={index * 100}
               >
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
-                  {service.title}
+                  {t(service.titleKey)}
                 </h3>
                 <p className="text-gray-600 mb-6 leading-relaxed">
-                  {service.description}
+                  {t(service.descKey)}
                 </p>
                 <ul className="space-y-3">
-                  {service.points.map((point, pointIndex) => (
+                  {service.pointKeys.map((pointKey, pointIndex) => (
                     <li key={pointIndex} className="flex items-start gap-3">
                       <div className="w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-gray-700 text-sm leading-relaxed">{point}</span>
+                      <span className="text-gray-700 text-sm leading-relaxed">{t(pointKey)}</span>
                     </li>
                   ))}
                 </ul>

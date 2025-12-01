@@ -1,6 +1,6 @@
 // src/pages/PartnerPage.tsx
 import { useState } from 'react';
-// import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 interface FormData {
   name: string;
@@ -10,7 +10,7 @@ interface FormData {
 }
 
 export default function PartnerPage() {
-//   const { t } = useTranslation();
+  const { t } = useTranslation();
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -71,10 +71,10 @@ export default function PartnerPage() {
         <div className="absolute inset-0 bg-white"></div>
         <div className="relative max-w-7xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-blue-600 mb-6" data-aos="fade-up">
-            Partner
+            {t('partnerTitle')}
           </h1>
           <p className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="200">
-            Ready to grow with us? Fill out the form below and tell us about your company and how you envision our collaboration creating mutual success.
+            {t('partnerDesc')}
           </p>
           <div className="w-32 h-1 bg-blue-600 mx-auto rounded-full" data-aos="fade-up" data-aos-delay="300"></div>
         </div>
@@ -85,18 +85,18 @@ export default function PartnerPage() {
         <div className="max-w-2xl mx-auto">
           <div className="bg-white rounded-3xl shadow-xl p-8 md:p-12">
             <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">
-              Get in Touch
+              {t('getInTouch')}
             </h2>
 
             {submitStatus === 'success' && (
               <div className="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
-                Thank you! Your partnership inquiry has been submitted successfully. We'll get back to you soon.
+                {t('submitSuccess')}
               </div>
             )}
 
             {submitStatus === 'error' && (
               <div className="mb-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
-                Sorry, there was an error submitting your form. Please try again.
+                {t('submitError')}
               </div>
             )}
 
@@ -104,7 +104,7 @@ export default function PartnerPage() {
               {/* Name Field */}
               <div>
                 <label htmlFor="name" className="block text-sm font-semibold text-blue-600 mb-2">
-                  Name
+                  {t('partnerName')}
                 </label>
                 <input
                   type="text"
@@ -112,7 +112,7 @@ export default function PartnerPage() {
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  placeholder="Name"
+                  placeholder={t('namePlaceholder')}
                   required
                   className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200"
                 />
@@ -121,7 +121,7 @@ export default function PartnerPage() {
               {/* Email Field */}
               <div>
                 <label htmlFor="email" className="block text-sm font-semibold text-blue-600 mb-2">
-                  E-mail
+                  {t('partnerEmail')}
                 </label>
                 <input
                   type="email"
@@ -129,7 +129,7 @@ export default function PartnerPage() {
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  placeholder="youremail@gmail.com"
+                  placeholder={t('emailPlaceholder')}
                   required
                   className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200"
                 />
@@ -138,7 +138,7 @@ export default function PartnerPage() {
               {/* Project Field */}
               <div>
                 <label htmlFor="project" className="block text-sm font-semibold text-blue-600 mb-2">
-                  Project
+                  {t('project')}
                 </label>
                 <input
                   type="text"
@@ -146,7 +146,7 @@ export default function PartnerPage() {
                   name="project"
                   value={formData.project}
                   onChange={handleInputChange}
-                  placeholder="Project name"
+                  placeholder={t('projectPlaceholder')}
                   required
                   className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200"
                 />
@@ -155,14 +155,14 @@ export default function PartnerPage() {
               {/* Project Scope Field */}
               <div>
                 <label htmlFor="projectScope" className="block text-sm font-semibold text-blue-600 mb-2">
-                  Project Scope
+                  {t('projectScope')}
                 </label>
                 <textarea
                   id="projectScope"
                   name="projectScope"
                   value={formData.projectScope}
                   onChange={handleInputChange}
-                  placeholder="Explain the detail of your project"
+                  placeholder={t('projectScopePlaceholder')}
                   rows={6}
                   required
                   className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200 resize-none"
@@ -176,7 +176,7 @@ export default function PartnerPage() {
                   onClick={handleCancel}
                   className="flex-1 px-8 py-3 border-2 border-blue-600 text-blue-600 font-bold text-base rounded-full hover:bg-blue-50 transition-all duration-300"
                 >
-                  Cancel
+                  {t('cancel')}
                 </button>
                 <button
                   type="submit"
@@ -186,11 +186,11 @@ export default function PartnerPage() {
                   {isSubmitting ? (
                     <>
                       <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                      Submitting...
+                      {t('submitting')}
                     </>
                   ) : (
                     <>
-                      Submit
+                      {t('submit')}
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
