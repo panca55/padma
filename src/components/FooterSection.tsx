@@ -37,14 +37,14 @@ function FooterSection() {
               </ul>
               {/* sosmed */}
               <div className="mt-6 flex space-x-4">
-                <a href="https://www.instagram.com/padmaraharjasentosa" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
-                  <img src={ig} alt="Instagram" className="w-5 h-5" />
+                <a href="https://www.instagram.com/padmaraharjasentosa" target="_blank" rel="noopener noreferrer" className="group hover:text-white transition-all duration-300">
+                  <img src={ig} alt="Instagram" className="w-5 h-5 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 filter group-hover:brightness-110" />
                 </a>
-                <a href="https://twitter.com/PadmaRaharjaS" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
-                  <img src={x} alt="Twitter" className="w-5 h-5" />
+                <a href="https://twitter.com/PadmaRaharjaS" target="_blank" rel="noopener noreferrer" className="group hover:text-white transition-all duration-300">
+                  <img src={x} alt="Twitter" className="w-5 h-5 group-hover:scale-110 group-hover:-rotate-12 transition-all duration-300 filter group-hover:brightness-110" />
                 </a>
-                <a href="https://www.linkedin.com/company/pt-padma-raharja-sentosa/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
-                  <img src={linkedin} alt="LinkedIn" className="w-5 h-5" />
+                <a href="https://www.linkedin.com/company/pt-padma-raharja-sentosa/" target="_blank" rel="noopener noreferrer" className="group hover:text-white transition-all duration-300">
+                  <img src={linkedin} alt="LinkedIn" className="w-5 h-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 filter group-hover:brightness-110" />
                 </a>
               </div>
             </div>
