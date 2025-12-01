@@ -27,6 +27,10 @@ export default async function handler(req: any, res: any) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
     
+    console.log('All environment variables:', Object.keys(process.env));
+    console.log('GOOGLE_SHEET_ID from env:', process.env.GOOGLE_SHEET_ID);
+    console.log('GOOGLE_SHEETS_API_KEY from env:', process.env.GOOGLE_SHEETS_API_KEY);
+    
     // Google Sheets API configuration
     const SHEET_ID = process.env.GOOGLE_SHEET_ID || "1B98EgvA1IlxD_eVzWrtITizzlTm2FXyxDtVhhuFoyZM";
     const API_KEY = process.env.GOOGLE_SHEETS_API_KEY || "AIzaSyBNFxjqlf9io2OcS3Q9KCG3AFzOQaQ3cS8";
