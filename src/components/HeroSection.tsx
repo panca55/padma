@@ -113,7 +113,7 @@ export default function HeroSection() {
                 {stats.map((stat, i) => (
                   <div
                     key={i}
-                    className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-3xl p-6 text-center hover:bg-white/20 hover:scale-105 transition-all duration-500 shadow-2xl hover:shadow-blue-500/25"
+                    className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-3xl p-8 text-center hover:bg-white/20 hover:scale-105 transition-all duration-500 shadow-2xl hover:shadow-blue-500/25"
                   >
                     <div className="text-4xl font-extrabold text-white mb-2">{stat.number}</div>
                     <div className="text-xs font-medium text-blue-200 uppercase tracking-wider">
