@@ -1,4 +1,8 @@
 import logo from '../assets/clients/logo.png';
+import x from '../assets/clients/x.png';
+import linkedin from '../assets/clients/linkedin.png';
+import ig from '../assets/clients/ig.png';
+// import { Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
 function FooterSection() {
   return (
     <footer className="bg-gray-900/95 dark:bg-black/95 backdrop-blur-lg text-white py-12 px-4 sm:px-6 lg:px-8 border-t border-gray-800/50">
@@ -29,6 +33,18 @@ function FooterSection() {
                 <li>Man Power Outsourcing</li>
                 <li>Headhunter Services</li>
               </ul>
+              {/* sosmed */}
+              <div className="mt-6 flex space-x-4">
+                <a href="https://www.instagram.com/padmaraharjasentosa" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+                  <img src={ig} alt="Instagram" className="w-5 h-5" />
+                </a>
+                <a href="https://www.twitter.com/padmaraharja" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+                  <img src={x} alt="Twitter" className="w-5 h-5" />
+                </a>
+                <a href="https://www.linkedin.com/company/padmaraharjasentosa" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+                  <img src={linkedin} alt="LinkedIn" className="w-5 h-5" />
+                </a>
+              </div>
             </div>
           </div>
           <div className="border-t border-gray-800 pt-8 text-center text-gray-400">

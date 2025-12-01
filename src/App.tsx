@@ -8,6 +8,8 @@ import ContactSection from './components/ContactSection'
 import FooterSection from './components/FooterSection'
 import ClientsSections from './components/ClientsSection'
 import ClientsServicePage from './pages/ClientsServicePage'
+import AboutPage from './pages/AboutPage'
+import PartnerPage from './pages/PartnerPage'
 import i18n from './i18n'
 
 function App() {
@@ -30,6 +32,20 @@ useEffect(() => {
             <ServiceSection />
             <ClientsSections />
             <ContactSection />
+            <FooterSection />
+          </>
+        } />
+        <Route path="/about" element={
+          <>
+            <NavbarSection isDark={isDark} setIsDark={setIsDark} />
+            <AboutPage />
+            <FooterSection />
+          </>
+        } />
+        <Route path="/partner" element={
+          <>
+            <NavbarSection isDark={isDark} setIsDark={setIsDark} />
+            <PartnerPage />
             <FooterSection />
           </>
         } />

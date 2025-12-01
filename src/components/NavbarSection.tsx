@@ -32,8 +32,9 @@ function NavbarSection({ isDark, setIsDark }: NavbarSectionProps) {
       {/* Desktop Menu */}
       <div className="hidden md:flex items-center space-x-8">
         <Link to="/" className="text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">{t('home')}</Link>
-        <Link to="/#about" className="text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">{t('about')}</Link>
+        <Link to="/about" className="text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">{t('about')}</Link>
         <Link to="/clients-services" className="text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">{t('clientsServices')}</Link>
+        <Link to="/partner" className="text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">Partner</Link>
         <Link to="/#services" className="text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">{t('services')}</Link>
         <Link to="/#contact" className="text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">{t('contact')}</Link>
 
@@ -91,8 +92,9 @@ function NavbarSection({ isDark, setIsDark }: NavbarSectionProps) {
     <div className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
       <div className="px-4 py-4 space-y-3">
         <Link to="/" className="block text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">{t('home')}</Link>
-        <Link to="/#about" className="block text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">{t('about')}</Link>
+        <Link to="/about" className="block text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">{t('about')}</Link>
         <Link to="/clients-services" className="block text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">{t('clientsServices')}</Link>
+        <Link to="/partner" className="block text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Partner</Link>
         <Link to="/#services" className="block text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">{t('services')}</Link>
         <Link to="/#contact" className="block text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">{t('contact')}</Link>
       </div>

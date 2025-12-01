@@ -97,7 +97,7 @@ export default function AboutSection() {
             >
               <div className="absolute inset-0 bg-gradient-to-t from-blue-600/10 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
               <div className="relative z-10">
-                <div className="p-5 bg-blue-100 dark:bg-blue-900/50 group-hover:bg-white/20 rounded-full w-24 h-24 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-all duration-300">
+                <div className="p-5 bg-blue-100 dark:bg-blue-900/50 group-hover:stroke-2 stroke-white bg-transparent rounded-full w-24 h-24 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-all duration-300">
                   <img src={value.icon} alt={value.title} className="w-12 h-12 group-hover:filter group-hover:invert group-hover:brightness-0 group-hover:contrast-100 transition-all duration-300" />
                 </div>
                 <h4 className="text-lg font-bold text-gray-900 dark:text-white group-hover:text-white leading-tight transition-colors duration-300">
