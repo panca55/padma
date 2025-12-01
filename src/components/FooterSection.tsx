@@ -40,10 +40,10 @@ function FooterSection() {
                 <a href="https://www.instagram.com/padmaraharjasentosa" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
                   <img src={ig} alt="Instagram" className="w-5 h-5" />
                 </a>
-                <a href="https://www.twitter.com/padmaraharja" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+                <a href="https://twitter.com/PadmaRaharjaS" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
                   <img src={x} alt="Twitter" className="w-5 h-5" />
                 </a>
-                <a href="https://www.linkedin.com/company/padmaraharjasentosa" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+                <a href="https://www.linkedin.com/company/pt-padma-raharja-sentosa/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
                   <img src={linkedin} alt="LinkedIn" className="w-5 h-5" />
                 </a>
               </div>
