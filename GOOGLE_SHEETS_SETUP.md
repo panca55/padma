@@ -1,4 +1,6 @@
-# Konfigurasi Google Sheets untuk Menyimpan Data Form Partner (Vercel)
+# Setup Google Sheets dengan Google Apps Script (Vercel Compatible)
+
+Error 401 terjadi karena Google Sheets API tidak mendukung API key untuk write operations. Solusi terbaik adalah menggunakan Google Apps Script sebagai webhook.
 
 ## Langkah-langkah Setup:
 
@@ -8,59 +10,78 @@
 - Di baris pertama (header), masukkan kolom:
   - A1: Timestamp
   - B1: Name
-  - C1: Email
+  - C1: Email  
   - D1: Project
   - E1: Project Scope
 
-### 2. Dapatkan Google Sheets API Key
-1. Buka [Google Cloud Console](https://console.cloud.google.com/)
-2. Buat project baru atau pilih project yang sudah ada
-3. Enable Google Sheets API:
-   - Pergi ke "APIs & Services" > "Library"
-   - Cari "Google Sheets API"
-   - Klik "Enable"
-4. Buat API Key:
-   - Pergi ke "APIs & Services" > "Credentials"
-   - Klik "Create Credentials" > "API Key"
-   - Copy API Key yang dibuat
+### 2. Buat Google Apps Script
+1. Di Google Sheet, klik **Extensions** > **Apps Script**
+2. Hapus kode default dan paste kode berikut:
 
-### 3. Share Google Sheet
-1. Buka Google Sheet yang sudah dibuat
-2. Klik "Share" di pojok kanan atas
-3. Ubah permission menjadi "Anyone with the link can edit"
-4. Copy Sheet ID dari URL (bagian antara `/d/` dan `/edit`)
-   - Contoh: `https://docs.google.com/spreadsheets/d/1ABC123.../edit`
-   - Sheet ID: `1ABC123...`
+```javascript
+function doPost(e) {
+  try {
+    // Get the active spreadsheet
+    var sheet = SpreadsheetApp.getActiveSheet();
+    
+    // Get form data
+    var timestamp = e.parameter.timestamp || new Date().toLocaleString();
+    var name = e.parameter.name;
+    var email = e.parameter.email;
+    var project = e.parameter.project;
+    var projectScope = e.parameter.projectScope;
+    
+    // Append data to sheet
+    sheet.appendRow([timestamp, name, email, project, projectScope]);
+    
+    return ContentService
+      .createTextOutput(JSON.stringify({success: true, message: 'Data saved successfully'}))
+      .setMimeType(ContentService.MimeType.JSON);
+      
+  } catch (error) {
+    return ContentService
+      .createTextOutput(JSON.stringify({success: false, error: error.toString()}))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+```
 
-### 4. Setup Environment Variables di Vercel
-1. Login ke [Vercel Dashboard](https://vercel.com/dashboard)
-2. Pilih project Anda (atau import dari GitHub)
-3. Pergi ke "Settings" > "Environment Variables"
-4. Tambahkan 2 environment variables:
-   - `GOOGLE_SHEET_ID`: Masukkan Sheet ID yang sudah dicopy
-   - `GOOGLE_SHEETS_API_KEY`: Masukkan API Key yang sudah dibuat
-5. Set untuk semua environments (Production, Preview, Development)
+3. **Save** project dengan nama "Partner Form Handler"
 
-### 5. Deploy ke Vercel
-1. **Via Vercel CLI:**
-   ```bash
-   npm install -g vercel
-   vercel
-   ```
+### 3. Deploy Apps Script sebagai Web App
+1. Klik **Deploy** > **New deployment**
+2. Pilih type: **Web app**
+3. Set configuration:
+   - **Execute as**: Me (your email)
+   - **Who has access**: Anyone
+4. Klik **Deploy**
+5. **Copy Web app URL** yang diberikan
 
-2. **Via GitHub Integration:**
-   - Connect repository ke Vercel
-   - Auto-deploy setiap push ke main branch
+### 4. Update Environment Variable di Vercel
+1. Login ke Vercel Dashboard
+2. Go to project Settings > Environment Variables
+3. Add/Update:
+   - **Key**: `GOOGLE_APPS_SCRIPT_WEBHOOK`
+   - **Value**: Web app URL yang di-copy dari step 3
+   - **Environments**: Production, Preview, Development
 
-3. **Manual Upload:**
-   - Zip project folder
-   - Upload via Vercel dashboard
+### 5. Test dan Deploy
+1. Push code ke repository
+2. Vercel akan auto-deploy
+3. Test form di `/partner`
+4. Data akan tersimpan ke Google Sheet otomatis
 
-### 6. Test Form
-1. Akses website yang sudah di-deploy
-2. Pergi ke halaman `/partner`
-3. Isi dan submit form
-4. Cek Google Sheet, data akan otomatis tersimpan
+## Keuntungan Google Apps Script:
+- ✅ No API key needed
+- ✅ Direct access ke Google Sheets  
+- ✅ Built-in authentication
+- ✅ Free dan reliable
+- ✅ No quota limits untuk basic usage
+
+## Troubleshooting:
+- Pastikan Apps Script di-deploy dengan akses "Anyone"
+- Pastikan webhook URL sudah benar di environment variables
+- Check function logs di Vercel untuk debugging
 
 ## **Cara Deploy ke Vercel:**
 

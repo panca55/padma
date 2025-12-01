@@ -26,58 +26,33 @@ export default async function handler(req: any, res: any) {
     if (!data.name || !data.email || !data.project || !data.projectScope) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
+
+    // Webhook URL untuk Google Apps Script
+    const WEBHOOK_URL = process.env.GOOGLE_APPS_SCRIPT_WEBHOOK || "https://script.google.com/macros/s/AKfycbx0VWHt6N8UGLs_n8vNHc-Kup8bW4hZV0GbP6CJOHY_0M1yS-fX9RJNfMIQ8Uz_rjwW/exec";
     
-    console.log('All environment variables:', Object.keys(process.env));
-    console.log('GOOGLE_SHEET_ID from env:', process.env.GOOGLE_SHEET_ID);
-    console.log('GOOGLE_SHEETS_API_KEY from env:', process.env.GOOGLE_SHEETS_API_KEY);
-    
-    // Google Sheets API configuration
-    const SHEET_ID = process.env.GOOGLE_SHEET_ID || "1B98EgvA1IlxD_eVzWrtITizzlTm2FXyxDtVhhuFoyZM";
-    const API_KEY = process.env.GOOGLE_SHEETS_API_KEY || "AIzaSyBNFxjqlf9io2OcS3Q9KCG3AFzOQaQ3cS8";
-    const RANGE = 'Sheet1!A:E';
+    console.log('Sending to Google Apps Script webhook...');
 
-    console.log('Environment variables check:', { 
-      hasSheetId: !!SHEET_ID, 
-      hasApiKey: !!API_KEY 
-    });
+    // Prepare the data
+    const formData = new URLSearchParams();
+    formData.append('timestamp', new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' }));
+    formData.append('name', data.name);
+    formData.append('email', data.email);
+    formData.append('project', data.project);
+    formData.append('projectScope', data.projectScope);
 
-    if (!SHEET_ID || !API_KEY) {
-      return res.status(500).json({ 
-        error: 'Missing Google Sheets configuration',
-        details: 'GOOGLE_SHEET_ID and GOOGLE_SHEETS_API_KEY must be set'
-      });
-    }
-
-    // Prepare the data for Google Sheets
-    const values = [
-      [
-        new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' }),
-        data.name,
-        data.email,
-        data.project,
-        data.projectScope
-      ]
-    ];
-
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE}:append?valueInputOption=USER_ENTERED&key=${API_KEY}`;
-
-    console.log('Sending to Google Sheets:', { url: url.replace(API_KEY, '[HIDDEN]'), values });
-
-    const response = await fetch(url, {
+    const response = await fetch(WEBHOOK_URL, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: JSON.stringify({
-        values: values
-      })
+      body: formData.toString()
     });
 
     const responseText = await response.text();
-    console.log('Google Sheets response:', { status: response.status, body: responseText });
+    console.log('Google Apps Script response:', { status: response.status, body: responseText });
 
     if (!response.ok) {
-      console.error('Google Sheets API error:', responseText);
+      console.error('Google Apps Script error:', responseText);
       return res.status(500).json({ 
         error: 'Failed to submit to Google Sheets',
         details: responseText
