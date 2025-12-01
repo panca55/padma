@@ -1,4 +1,9 @@
-import { Award, Briefcase, Clock, DollarSign, MapPin, Shield, Target, TrendingUp, Users, Zap } from "lucide-react";
+import { Award, Briefcase, MapPin, Shield, Target, TrendingUp, Users } from "lucide-react";
+import time from '../assets/clients/time.png';
+import carbon from '../assets/clients/carbon.png';
+import person from '../assets/clients/person.png';
+import uil from '../assets/clients/uil.png';
+// import shield from '../assets/clients/shield-yes.png';
 
 // Data untuk statistik perusahaan
  export const stats = [
@@ -40,21 +45,21 @@ import { Award, Briefcase, Clock, DollarSign, MapPin, Shield, Target, TrendingUp
     {
       title: 'Time Saving',
       description: 'Focus on your core business while we handle all HR and operational workforce processes.',
-      icon: Clock
+      icon: time
     },
     {
       title: 'Fast & Flexible Manpower Supply',
       description: 'Immediate access to a pool of qualified, pre-screened workers to match urgent or changing demands.',
-      icon: Zap
+      icon: person
     },
     {
       title: 'Cost Efficiency',
       description: 'Reduce operational costs related to recruitment, training, payroll, and employee management.',
-      icon: DollarSign
+      icon: uil
     },
     {
       title: 'Regulatory Compliance',
       description: 'All our HR processes and contracts follow Indonesian labor laws — minimizing your legal risks.',
-      icon: Shield
+      icon: carbon
     }
   ];

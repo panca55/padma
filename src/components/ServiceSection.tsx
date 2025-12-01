@@ -40,7 +40,7 @@ function ServiceSection() {
               {benefits.map((benefit, index) => (
                 <div key={index} className="flex items-start">
                   <div className="shrink-0 w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mr-4">
-                    <benefit.icon className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                    <img src={benefit.icon} alt={benefit.title} className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                   </div>
                   <div>
                     <h4 className="font-bold text-gray-900 dark:text-white mb-2">{benefit.title}</h4>

@@ -79,7 +79,7 @@ const resources = {
       regulatoryComplianceDesc: 'All our HR processes and contracts follow Indonesian labor laws — minimizing your legal risks.',
 
       // Contact Section
-      contactUsTitle: 'Contact Us',
+      contactUsTitle: 'Contact Information',
       letsGrow: "Let's Grow Together!",
       headOffice: 'Head Office',
       address: 'Address',
@@ -188,7 +188,7 @@ const resources = {
       regulatoryComplianceDesc: 'Semua proses SDM dan kontrak kami mengikuti hukum ketenagakerjaan Indonesia — meminimalkan risiko hukum Anda.',
 
       // Contact Section
-      contactUsTitle: 'Hubungi Kami',
+      contactUsTitle: 'Informasi Kontak',
       letsGrow: 'Mari Tumbuh Bersama!',
       headOffice: 'Kantor Pusat',
       address: 'Alamat',

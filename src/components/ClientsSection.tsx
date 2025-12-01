@@ -41,24 +41,66 @@ export default function ClientsSections() {
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
               Our Clients
             </h2>
-            <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
-              Dipercaya oleh bank dan institusi keuangan terkemuka di Indonesia
-            </p>
+            <div className="mt-8 w-32 h-1 bg-gradient-to-r from-[#155DFB] to-[#00B7DB] mx-auto rounded-full"></div>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center" data-aos="fade-up" data-aos-delay="200">
-            {clientLogos.map((client, i) => (
-              <div
-                key={i}
-                className="flex items-center justify-center p-6 bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-2xl shadow-lg hover:shadow-2xl hover:scale-110 transition-all duration-300 border border-gray-200/50 dark:border-gray-700/50"
-              >
-                <img
-                  src={client.src}
-                  alt={client.alt}
-                  className="max-h-16 w-auto object-contain filter dark:invert dark:brightness-0 dark:contrast-100"
-                />
-              </div>
-            ))}
+          {/* First Row: 5 logos */}
+          <div data-aos="fade-up" data-aos-delay="200">
+            <div className="grid grid-cols-5 gap-8 items-center mb-8">
+              {clientLogos.slice(0, 5).map((client, i) => (
+                <div
+                  key={i}
+                  className="group relative flex items-center justify-center p-6 bg-white dark:bg-gray-800 backdrop-blur-lg rounded-2xl shadow-lg hover:shadow-2xl hover:scale-110 transition-all duration-300 border border-gray-200/50 dark:border-gray-700/50 hover:border-transparent"
+                >
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#155DFB] to-[#00B7DB] opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-[2px]">
+                    <div className="w-full h-full bg-white dark:bg-gray-800 backdrop-blur-lg rounded-[14px]"></div>
+                  </div>
+                  <img
+                    src={client.src}
+                    alt={client.alt}
+                    className="relative z-10 w-20 h-20 object-contain filter dark:invert dark:brightness-0 dark:contrast-100"
+                  />
+                </div>
+              ))}
+            </div>
+
+            {/* Second Row: 5 logos */}
+            <div className="grid grid-cols-5 gap-8 items-center mb-8">
+              {clientLogos.slice(5, 10).map((client, i) => (
+                <div
+                  key={i}
+                  className="group relative flex items-center justify-center p-6 bg-white dark:bg-gray-800 backdrop-blur-lg rounded-2xl shadow-lg hover:shadow-2xl hover:scale-110 transition-all duration-300 border border-gray-200/50 dark:border-gray-700/50 hover:border-transparent"
+                >
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#155DFB] to-[#00B7DB] opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-[2px]">
+                    <div className="w-full h-full bg-white dark:bg-gray-800 backdrop-blur-lg rounded-[14px]"></div>
+                  </div>
+                  <img
+                    src={client.src}
+                    alt={client.alt}
+                    className="relative z-10 w-20 h-20 object-contain filter dark:invert dark:brightness-0 dark:contrast-100"
+                  />
+                </div>
+              ))}
+            </div>
+
+            {/* Third Row: 3 logos */}
+            <div className="grid grid-cols-3 gap-8 items-center justify-center max-w-3xl mx-auto">
+              {clientLogos.slice(10, 13).map((client, i) => (
+                <div
+                  key={i}
+                  className="group relative flex items-center justify-center p-6 bg-white dark:bg-gray-800 backdrop-blur-lg rounded-2xl shadow-lg hover:shadow-2xl hover:scale-110 transition-all duration-300 border border-gray-200/50 dark:border-gray-700/50 hover:border-transparent"
+                >
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#155DFB] to-[#00B7DB] opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-[2px]">
+                    <div className="w-full h-full bg-white dark:bg-gray-800 backdrop-blur-lg rounded-[14px]"></div>
+                  </div>
+                  <img
+                    src={client.src}
+                    alt={client.alt}
+                    className="relative z-10 w-20 h-20 object-contain filter dark:invert dark:brightness-0 dark:contrast-100"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* CTA to Clients & Services Page */}

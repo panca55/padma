@@ -32,7 +32,7 @@ function FooterSection() {
             </div>
           </div>
           <div className="border-t border-gray-800 pt-8 text-center text-gray-400" data-aos="fade-up" data-aos-delay="200">
-            <p>&copy; 2024 PT Padma Raharja Sentosa. All rights reserved.</p>
+            <p>&copy; 2020 PT Padma Raharja Sentosa. All rights reserved.</p>
           </div>
         </div>
       </footer>
