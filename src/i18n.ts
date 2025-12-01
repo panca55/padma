@@ -206,7 +206,14 @@ const resources = {
       accountOfficerSME: 'Account Officer - SME',
       agencyOfficer: 'Agency Officer',
       supervisor: 'Supervisor',
-      collection: 'Collection'
+      collection: 'Collection',
+
+      // 404 Page
+      pageNotFoundTitle: 'Page Not Found',
+      pageNotFoundDesc: 'The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.',
+      backToHome: 'Back to Home',
+      goBack: 'Go Back',
+      needHelp: 'Need help? Contact our support team:'
     }
   },
   id: {
@@ -412,7 +419,14 @@ const resources = {
       accountOfficerSME: 'Petugas Akun - UKM',
       agencyOfficer: 'Petugas Agensi',
       supervisor: 'Supervisor',
-      collection: 'Penagihan'
+      collection: 'Penagihan',
+
+      // 404 Page
+      pageNotFoundTitle: 'Halaman Tidak Ditemukan',
+      pageNotFoundDesc: 'Halaman yang Anda cari mungkin telah dihapus, namanya diubah, atau sementara tidak tersedia.',
+      backToHome: 'Kembali ke Beranda',
+      goBack: 'Kembali',
+      needHelp: 'Butuh bantuan? Hubungi tim dukungan kami:'
     }
   }
 };

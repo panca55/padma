@@ -10,6 +10,7 @@ import ClientsSections from './components/ClientsSection'
 import ClientsServicePage from './pages/ClientsServicePage'
 import AboutPage from './pages/AboutPage'
 import PartnerPage from './pages/PartnerPage'
+import NotFoundPage from './pages/NotFoundPage'
 import i18n from './i18n'
 
 function App() {
@@ -53,6 +54,14 @@ useEffect(() => {
           <>
             <NavbarSection isDark={isDark} setIsDark={setIsDark} />
             <ClientsServicePage key={i18n.language} />
+            <FooterSection />
+          </>
+        } />
+        {/* 404 Catch-all Route */}
+        <Route path="*" element={
+          <>
+            <NavbarSection isDark={isDark} setIsDark={setIsDark} />
+            <NotFoundPage />
             <FooterSection />
           </>
         } />
