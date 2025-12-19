@@ -21,7 +21,7 @@ function FooterSection() {
             </div>
             <div>
               <h4 className="font-bold mb-4">{t('quickLinks')}</h4>
-              <ul className="space-y-2 text-gray-400">
+              <ul className="space-y-2 text-gray-400"> 
                 <li><a href="#home" className="hover:text-white transition">{t('home')}</a></li>
                 <li><a href="#about" className="hover:text-white transition">{t('about')}</a></li>
                 <li><a href="#services" className="hover:text-white transition">{t('services')}</a></li>

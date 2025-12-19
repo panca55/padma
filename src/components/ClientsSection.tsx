@@ -1,4 +1,5 @@
 
+import { useState, useEffect } from 'react';
 import cimb from '../assets/clients/cmb.png';
 import cimbFinance from '../assets/clients/cmbfinance.png';
 import ocbc from '../assets/clients/ocbc.png';
@@ -16,9 +17,15 @@ import { ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
+interface ClientLogo {
+  src: string;
+  alt: string;
+  id?: number;
+}
+
 export default function ClientsSections() {
   const { t } = useTranslation();
-  const clientLogos = [
+  const [clientLogos, setClientLogos] = useState<ClientLogo[]>([
     { src: cimb, alt: 'CIMB Niaga' },
     { src: cimbFinance, alt: 'CIMB Niaga Finance' },
     { src: ocbc, alt: 'OCBC' },
@@ -32,7 +39,32 @@ export default function ClientsSections() {
     { src: muamalat, alt: 'Bank Muamalat' },
     { src: aceh, alt: 'Bank Aceh' },
     { src: moladin, alt: 'Moladin' },
-  ];
+  ]);
+
+  useEffect(() => {
+    const fetchClients = async () => {
+      try {
+        const response = await fetch('http://127.0.0.1:8000/api/v1/clients');
+        const result = await response.json();
+        
+        if (result.data && Array.isArray(result.data)) {
+          const apiClients: ClientLogo[] = result.data.map((client: any) => ({
+            id: client.id,
+            src: client.logo,
+            alt: client.name
+          }));
+          
+          // Gabungkan data existing dengan data dari API
+          setClientLogos(prev => [...prev, ...apiClients]);
+        }
+      } catch (error) {
+        console.error('Error fetching clients:', error);
+        // Tetap gunakan data default jika API error
+      }
+    };
+
+    fetchClients();
+  }, []);
 
   return (
     <>
