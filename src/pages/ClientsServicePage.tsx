@@ -1,5 +1,5 @@
 // src/pages/ClientsServicePage.tsx
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Check } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import cimb from '../assets/clients/cmb.png';
@@ -16,55 +16,96 @@ import muamalat from '../assets/clients/muamalat.png';
 import aceh from '../assets/clients/aceh.png';
 import moladin from '../assets/clients/moladin.png';
 
-const clientServices = [
-  { name: 'CIMB Niaga', logo: cimb, services: [
+// interface Service {
+//   id: number;
+//   title: string;
+//   subtitle: string;
+// }
+
+interface ClientService {
+  id: number;
+  name: string;
+  logo: string;
+  services?: any[];
+}
+
+const staticClientServices: ClientService[] = [
+  { id: 0, name: 'CIMB Niaga', logo: cimb, services: [
     { type: 'Headhunter', itemKeys: ['mortgageAlternateChannelManager', 'mortgageRelationshipManager', 'preferredRelationshipManager', 'emergingBusinessBankingRO', 'relationshipManagerDevProgram'] },
     { type: 'Man Power Outsourcing - PKWT & Mitra', itemKeys: ['mortgageSalesRepresentative', 'directSalesCardSupervisor', 'salesQRISMerchant', 'dsrFundingSupervisor', 'hajjBranchSalesRep', 'communitySalesExecSupervisor', 'branchSalesExecSupervisor', 'teleSalesOfficerSupervisor'] }
   ]},
-  { name: 'CIMB Niaga Finance', logo: cimbFinance, services: [
+  { id: 0, name: 'CIMB Niaga Finance', logo: cimbFinance, services: [
     { type: 'Headhunter', itemKeys: ['areaManager', 'salesManager', 'branchManager', 'rmCorporate', 'salesOfficer'] },
     { type: 'Man Power Outsourcing - PKWT & Mitra', itemKeys: ['cmoUsedCarNewCar', 'salesBranchInitiative', 'branchRelationshipOfficer', 'surveyor', 'directSalesAggregatorRef', 'deskCollectionAdmin', 'fieldCollectionMidRange', 'problemAccountOfficer'] }
   ]},
-  { name: 'OCBC', logo: ocbc, services: [
+  { id: 0, name: 'OCBC', logo: ocbc, services: [
     { type: 'Man Power Outsourcing - PKWT & Mitra', itemKeys: ['agencySalesManager', 'supervisorTeamLeader', 'fundingMobileAcquisition', 'personalLoanDirectSales', 'creditCardDirectSales', 'adminSupport'] }
   ]},
-  { name: 'KB Bukopin', logo: kbbukopin, services: [
+  { id: 0, name: 'KB Bukopin', logo: kbbukopin, services: [
     { type: 'Headhunter – Permanent Staff', itemKeys: ['relationshipBankingOfficer', 'priorityBankingOfficer', 'rmMortgage', 'rmSmallMediumEnterprises', 'aoConsumer'] }
   ]},
-  { name: 'Allo Bank', logo: alloBank, services: [
+  { id: 0, name: 'Allo Bank', logo: alloBank, services: [
     { type: 'Man Power Outsourcing', itemKeys: ['businessLeader', 'directSales', 'adminSupport', 'spgSpb'] }
   ]},
-  { name: 'Nobu Bank', logo: nobu, services: [
+  { id: 0, name: 'Nobu Bank', logo: nobu, services: [
     { type: 'Man Power Outsourcing', itemKeys: ['supervisorTeamLeader', 'juniorSalesOfficer', 'seniorSalesOfficer'] }
   ]},
-  { name: 'Bank Mayapada', logo: mayapada, services: [
+  { id: 0, name: 'Bank Mayapada', logo: mayapada, services: [
     { type: 'Man Power Outsourcing', itemKeys: ['supervisorTeamLeader', 'personalLoanSalesOfficer', 'creditCardSalesOfficer', 'directSales', 'telesales'] }
   ]},
-  { name: 'Bank AS', logo: bankas, services: [
+  { id: 0, name: 'Bank AS', logo: bankas, services: [
     { type: 'Headhunter - Permanent', itemKeys: ['relationshipOfficerLending', 'relationshipOfficerFunding', 'operationalOfficerHeadBranch', 'headLendingFundingDivision', 'complianceRiskManagementExec'] }
   ]},
-  { name: 'Bank INA', logo: ina, services: [
+  { id: 0, name: 'Bank INA', logo: ina, services: [
     { type: 'Man Power Outsourcing', itemKeys: ['supervisorTeamLeader', 'juniorSalesAcquisition', 'seniorSalesAcquisition', 'executiveSalesAcquisition'] }
   ]},
-  { name: 'Hana Bank', logo: hana, services: [
+  { id: 0, name: 'Hana Bank', logo: hana, services: [
     { type: 'Man Power Outsourcing', itemKeys: ['creditWithoutCollateralRepeat', 'quickCreditIncreaseLimit'] }
   ]},
-  { name: 'Bank Muamalat', logo: muamalat, services: [
+  { id: 0, name: 'Bank Muamalat', logo: muamalat, services: [
     { type: 'Man Power Outsourcing', itemKeys: ['directSalesHaji', 'branchSalesOfficer', 'multifinanceUmroh', 'householdLoanCredit', 'creditWithoutCollateral'] }
   ]},
-  { name: 'Bank Aceh', logo: aceh, services: [
+  { id: 0, name: 'Bank Aceh', logo: aceh, services: [
     { type: 'Man Power Outsourcing', itemKeys: ['directSalesFunding', 'directSalesQrisMerchant'] }
   ]},
-  { name: 'Moladin', logo: moladin, services: [
+  { id: 0, name: 'Moladin', logo: moladin, services: [
     { type: 'Headhunter – Permanent Staff', itemKeys: ['accountOfficerSME', 'agencyOfficer', 'supervisor', 'collection'] }
   ]},
 ];
 
 export default function ClientsServicePage() {
   const { t } = useTranslation();
+  const [clientServices, setClientServices] = useState<ClientService[]>(staticClientServices);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    const fetchClients = async () => {
+      try {
+        const response = await fetch('https://www.admin.padmaraharjasentosa.co.id/api/v1/clients');
+        const result = await response.json();
+        
+        if (result.data && Array.isArray(result.data)) {
+          const apiClients: ClientService[] = result.data.map((client: any) => ({
+            id: client.id,
+            name: client.name,
+            logo: `https://admin.padmaraharjasentosa.co.id/${client.logo}`,
+            services: client.services || []
+          }));
+          
+          // Combine static data with API data (static first, then API)
+          setClientServices([...staticClientServices, ...apiClients]);
+        }
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching clients:', error);
+        // Keep static data if API fails
+        setLoading(false);
+      }
+    };
+
+    fetchClients();
   }, []);
 
   const getServiceTypeTranslation = (serviceType: string) => {
@@ -103,10 +144,26 @@ export default function ClientsServicePage() {
       {/* Services Grid */}
       <section className="py-20 px-6 lg:px-8 bg-gradient-to-r from-[#155DFB] to-[#00B7DB] dark:from-gray-900 dark:to-gray-800">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-wrap justify-center gap-8">
-            {clientServices.map((client, index) => (
+          {loading ? (
+            <div className="flex flex-wrap justify-center gap-8">
+              {[1, 2, 3, 4, 5, 6].map((i) => (
+                <div
+                  key={i}
+                  className="bg-white dark:bg-gray-800 rounded-3xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700 w-full sm:w-[300px] md:w-[320px] lg:w-[350px] animate-pulse"
+                >
+                  <div className="bg-gray-200 dark:bg-gray-700 h-64"></div>
+                  <div className="p-8 space-y-4">
+                    <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                    <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4"></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="flex flex-wrap justify-center gap-8">
+              {clientServices.map((client, index) => (
               <div
-                key={index}
+                key={client.id || index}
                 className="bg-white dark:bg-gray-800 rounded-3xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300 w-full sm:w-[300px] md:w-[320px] lg:w-[350px]"
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
@@ -123,27 +180,35 @@ export default function ClientsServicePage() {
 
                 {/* Body: Services */}
                 <div className="px-8 pb-8 space-y-6">
-                  {client.services.map((service, idx) => (
+                  {client.services && client.services.map((service: any, idx: number) => (
                     <div key={idx}>
                       <h4 className="font-bold text-[#155DFB] dark:text-blue-400 text-base mb-4">
-                        {getServiceTypeTranslation(service.type)}
+                        {service.type ? getServiceTypeTranslation(service.type) : service.title || ''}
                       </h4>
                       <ul className="space-y-3">
-                        {service.itemKeys.map((itemKey, i) => (
+                        {service.itemKeys ? service.itemKeys.map((itemKey: string, i: number) => (
                           <li key={i} className="flex items-start gap-3 text-gray-700 dark:text-gray-300">
                             <div className="w-5 h-5 rounded-full border-2 border-[#155DFB] dark:border-blue-400 flex items-center justify-center flex-shrink-0 mt-0.5">
                               <Check className="w-3 h-3 text-[#155DFB] dark:text-blue-400" />
                             </div>
                             <span className="text-sm leading-relaxed">{t(itemKey)}</span>
                           </li>
-                        ))}
+                        )) : (
+                          <li className="flex items-start gap-3 text-gray-700 dark:text-gray-300">
+                            <div className="w-5 h-5 rounded-full border-2 border-[#155DFB] dark:border-blue-400 flex items-center justify-center flex-shrink-0 mt-0.5">
+                              <Check className="w-3 h-3 text-[#155DFB] dark:text-blue-400" />
+                            </div>
+                            <span className="text-sm leading-relaxed">{service.subtitle || ''}</span>
+                          </li>
+                        )}
                       </ul>
                     </div>
                   ))}
                 </div>
               </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

@@ -32,7 +32,7 @@ export default function NewsDetailPage() {
           const newsData: NewsItem = {
             id: String(result.data.id),
             title: result.data.title,
-            image: result.data.image,
+            image: `https://admin.padmaraharjasentosa.co.id/${result.data.image}`,
             description: result.data.description,
             content: result.data.content || result.data.description,
             tags: result.data.tags || [],
@@ -53,7 +53,7 @@ export default function NewsDetailPage() {
             .map((item: any) => ({
               id: String(item.id),
               title: item.title,
-              image: item.image,
+              image: `https://admin.padmaraharjasentosa.co.id/${item.image}`,
               description: item.description,
               tags: item.tags || [],
               date: item.date

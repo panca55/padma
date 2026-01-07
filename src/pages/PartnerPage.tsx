@@ -29,35 +29,44 @@ export default function PartnerPage() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
+  e.preventDefault();
+  setIsSubmitting(true);
+  setSubmitStatus('idle');
 
-    try {
-      const response = await fetch('/api/submit-partner', {
-        method: 'POST',
+  try {
+    const formBody = new URLSearchParams({
+      timestamp: new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' }),
+      name: formData.name,
+      email: formData.email,
+      project: formData.project,
+      projectScope: formData.projectScope,
+    });
+
+    await fetch(
+      "https://script.google.com/macros/s/AKfycbxGzCfgMakS3VkM-LCusJhlbnFk_aHwtLdVjrk8rv6qo7g_BDe6gBC2AxdjA6VkMMId/exec",
+      {
+        method: "POST",
+        mode: "no-cors",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: JSON.stringify({
-          ...formData,
-          timestamp: new Date().toISOString(),
-        }),
-      });
-
-      if (response.ok) {
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', project: '', projectScope: '' });
-      } else {
-        setSubmitStatus('error');
+        body: formBody.toString(),
       }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+    );
+
+    // 🚀 DI no-cors, kalau tidak throw = sukses
+    setSubmitStatus('success');
+    setFormData({ name: '', email: '', project: '', projectScope: '' });
+
+  } catch (error) {
+    console.error('Submit error:', error);
+    setSubmitStatus('error');
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
+
 
   const handleCancel = () => {
     setFormData({ name: '', email: '', project: '', projectScope: '' });

@@ -28,7 +28,7 @@ export default function NewsPage() {
           const newsData: NewsItem[] = result.data.map((item: any) => ({
             id: String(item.id),
             title: item.title,
-            image: item.image,
+            image: `https://admin.padmaraharjasentosa.co.id/${item.image}`,
             description: item.description,
             tags: item.tags || [],
             date: item.date
@@ -139,9 +139,10 @@ export default function NewsPage() {
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 line-clamp-2">
                       {item.title}
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3">
-                      {item.description}
-                    </p>
+                    <div 
+                      className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3"
+                      dangerouslySetInnerHTML={{ __html: item.description }}
+                    />
 
                     {/* Tags */}
                     <div className="flex flex-wrap gap-2 mb-4">

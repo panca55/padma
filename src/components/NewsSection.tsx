@@ -29,7 +29,7 @@ export default function NewsSection() {
           const newsData: NewsItem[] = result.data.map((item: any) => ({
             id: String(item.id),
             title: item.title,
-            image: item.image,
+            image: `https://admin.padmaraharjasentosa.co.id/${item.image}`,
             description: item.description,
             tags: item.tags || [],
             date: item.date
@@ -127,7 +127,7 @@ export default function NewsSection() {
                       <img
                         src={item.image}
                         alt={item.title}
-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                        className="w-fit h-fit object-cover transition-transform duration-500 hover:scale-110"
                       />
                       <div className="absolute top-4 right-4">
                         <span className="px-3 py-1 bg-blue-600 text-white text-xs font-semibold rounded-full">
@@ -141,9 +141,10 @@ export default function NewsSection() {
                       <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 line-clamp-2">
                         {item.title}
                       </h3>
-                      <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3 flex-grow">
-                        {item.description}
-                      </p>
+                      <div 
+                        className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3 flex-grow"
+                        dangerouslySetInnerHTML={{ __html: item.description }}
+                      />
                       <Link
                         to={`/news/${item.id}`}
                         className="inline-flex items-center text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-semibold text-sm gap-2 group"

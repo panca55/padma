@@ -29,8 +29,9 @@ function NavbarSection({ isDark, setIsDark }: NavbarSectionProps) {
       <div className="hidden md:flex items-center space-x-8">
         <Link to="/" className="text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">{t('home')}</Link>
         <Link to="/about" className="text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">{t('about')}</Link>
+        <Link to="/news" className="text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">{t('news')}</Link>
         <Link to="/clients-services" className="text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">{t('clientsServices')}</Link>
-        <Link to="/partner" className="text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">{t('partner')}</Link>
+        <Link to="/partner" className="text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">{t('contactUs')}</Link>
         <Link to="/carrier" className="text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">{t('carrier')}</Link>
         {/* <Link to="/#services" className="text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">{t('services')}</Link> */}
         {/* <Link to="/#contact" className="text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">{t('contact')}</Link> */}

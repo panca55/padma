@@ -63,7 +63,7 @@ export default function ClientsSections() {
           const apiClients: ClientLogo[] = result.data.map((client: any) => ({
             id: client.id,
             name: client.name,
-            logo: client.logo,
+            logo: `https://admin.padmaraharjasentosa.co.id/${client.logo}`,
             services: client.services || []
           }));
           
@@ -151,7 +151,7 @@ export default function ClientsSections() {
                   </div>
                 ))}
               </div>
-              
+
               {/* Third Row: remaining logos */}
               {/* {clientLogos.length > 10 && (
                 <div className="grid grid-cols-3 gap-8 items-center justify-center max-w-3xl mx-auto">
