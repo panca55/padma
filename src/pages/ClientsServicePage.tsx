@@ -1,4 +1,5 @@
 // src/pages/ClientsServicePage.tsx
+import { useEffect } from 'react';
 import { Check } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import cimb from '../assets/clients/cmb.png';
@@ -62,6 +63,10 @@ const clientServices = [
 export default function ClientsServicePage() {
   const { t } = useTranslation();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const getServiceTypeTranslation = (serviceType: string) => {
     switch (serviceType) {
       case 'Headhunter':
@@ -80,10 +85,10 @@ export default function ClientsServicePage() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:from-gray-900 dark:via-gray-900 dark:to-gray-900">
+    <div className="min-h-screen bg-white dark:bg-gray-900">
       {/* Hero Section */}
       <section className="relative py-24 px-6 lg:px-8 overflow-hidden pt-20">
-        <div className="absolute inset-0 bg-white"></div>
+        <div className="absolute inset-0 bg-white dark:bg-gray-900"></div>
         <div className="relative max-w-7xl mx-auto text-center">
           <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-[#155DFB] to-[#00B7DB] bg-clip-text text-transparent mb-6" data-aos="fade-up">
             {t('clientsServicesTitle')}
@@ -102,16 +107,16 @@ export default function ClientsServicePage() {
             {clientServices.map((client, index) => (
               <div
                 key={index}
-                className="bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 w-full sm:w-[300px] md:w-[320px] lg:w-[350px]"
+                className="bg-white dark:bg-gray-800 rounded-3xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300 w-full sm:w-[300px] md:w-[320px] lg:w-[350px]"
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
               >
                 {/* Header dengan Logo Client */}
-                <div className="bg-white text-center p-8">
+                <div className="bg-white dark:bg-gray-800 text-center p-8">
                   <img
                     src={client.logo}
                     alt={client.name}
-                    className="w-32 h-32 mx-auto object-contain mb-6"
+                    className="w-32 h-32 mx-auto object-contain mb-6 dark:brightness-0 dark:invert"
                   />
                   <div className="w-16 h-1 bg-gradient-to-r from-[#155DFB] to-[#00B7DB] mx-auto rounded-full mb-6"></div>
                 </div>
@@ -120,14 +125,14 @@ export default function ClientsServicePage() {
                 <div className="px-8 pb-8 space-y-6">
                   {client.services.map((service, idx) => (
                     <div key={idx}>
-                      <h4 className="font-bold text-[#155DFB] text-base mb-4">
+                      <h4 className="font-bold text-[#155DFB] dark:text-blue-400 text-base mb-4">
                         {getServiceTypeTranslation(service.type)}
                       </h4>
                       <ul className="space-y-3">
                         {service.itemKeys.map((itemKey, i) => (
-                          <li key={i} className="flex items-start gap-3 text-gray-700">
-                            <div className="w-5 h-5 rounded-full border-2 border-[#155DFB] flex items-center justify-center flex-shrink-0 mt-0.5">
-                              <Check className="w-3 h-3 text-[#155DFB]" />
+                          <li key={i} className="flex items-start gap-3 text-gray-700 dark:text-gray-300">
+                            <div className="w-5 h-5 rounded-full border-2 border-[#155DFB] dark:border-blue-400 flex items-center justify-center flex-shrink-0 mt-0.5">
+                              <Check className="w-3 h-3 text-[#155DFB] dark:text-blue-400" />
                             </div>
                             <span className="text-sm leading-relaxed">{t(itemKey)}</span>
                           </li>
@@ -144,7 +149,7 @@ export default function ClientsServicePage() {
 
 
       {/* CTA Section */}
-      <section className="py-20 px-6 lg:px-8 bg-white">
+      {/* <section className="py-20 px-6 lg:px-8 bg-white">
         <div className="max-w-4xl mx-auto text-center text-black">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-[#155DFB] to-[#00B7DB] bg-clip-text text-transparent" data-aos="fade-up">
             {t('readyPartner')}
@@ -163,7 +168,7 @@ export default function ClientsServicePage() {
               </svg>
             </a>
             <a
-              href="#home"
+              href="/"
               className="relative px-8 py-4 bg-white font-bold text-base rounded-full hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 overflow-hidden group"
             >
               <div className="absolute inset-0 rounded-full p-[2px] bg-gradient-to-r from-[#155DFB] to-[#00B7DB]">
@@ -176,7 +181,7 @@ export default function ClientsServicePage() {
             </a>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

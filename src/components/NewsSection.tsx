@@ -22,7 +22,7 @@ export default function NewsSection() {
     // Fetch news from API
     const fetchNews = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:8000/api/v1/news/latest');
+        const response = await fetch('https://www.admin.padmaraharjasentosa.co.id/api/v1/news');
         const result = await response.json();
         
         if (result.data && Array.isArray(result.data)) {
@@ -78,7 +78,7 @@ export default function NewsSection() {
 
   return (
     <section className="py-20 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 transition-colors">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6 ">
         {/* Header */}
         <div className="text-center mb-12" data-aos="fade-up">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white underline decoration-blue-600 decoration-4 underline-offset-8">
@@ -119,11 +119,11 @@ export default function NewsSection() {
               {news.map((item) => (
                 <div
                   key={item.id}
-                  className="w-full md:w-1/3 flex-shrink-0 px-4"
+                  className="w-full md:w-1/3 flex-shrink-0 px-4 my-4"
                 >
-                  <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden border border-gray-100 dark:border-gray-700">
+                  <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col h-[520px]">
                     {/* Image */}
-                    <div className="relative h-56 overflow-hidden">
+                    <div className="relative h-56 overflow-hidden flex-shrink-0">
                       <img
                         src={item.image}
                         alt={item.title}
@@ -137,11 +137,11 @@ export default function NewsSection() {
                     </div>
 
                     {/* Content */}
-                    <div className="p-6">
+                    <div className="p-6 flex flex-col flex-grow">
                       <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 line-clamp-2">
                         {item.title}
                       </h3>
-                      <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3">
+                      <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3 flex-grow">
                         {item.description}
                       </p>
                       <Link

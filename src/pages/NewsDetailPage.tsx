@@ -25,7 +25,7 @@ export default function NewsDetailPage() {
     const fetchNewsDetail = async () => {
       try {
         // Fetch news detail
-        const response = await fetch(`http://127.0.0.1:8000/api/v1/news/${id}`);
+        const response = await fetch(`https://www.admin.padmaraharjasentosa.co.id/api/v1/news/${id}`);
         const result = await response.json();
         
         if (result.data) {
@@ -43,7 +43,7 @@ export default function NewsDetailPage() {
         }
 
         // Fetch related news (latest news excluding current)
-        const relatedResponse = await fetch('http://127.0.0.1:8000/api/v1/news/latest');
+        const relatedResponse = await fetch('https://www.admin.padmaraharjasentosa.co.id/api/v1/news');
         const relatedResult = await relatedResponse.json();
         
         if (relatedResult.data && Array.isArray(relatedResult.data)) {

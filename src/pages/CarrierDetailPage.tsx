@@ -3,22 +3,30 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft,  CheckCircle2, ChevronRight } from 'lucide-react';
 
+interface PIC {
+  id: number;
+  name: string;
+}
+
 interface JobDetail {
   id: string;
   title: string;
-  company: string;
+  position: string;
   location: string;
-  locationType: string;
-  salaryMin: number;
-  salaryMax: number;
-  education: string;
-  gender: string;
-  age: string;
-  experience: string;
-  description: string;
-  responsibilities?: string[];
-  position?: string;
-  branch?: string;
+  min_salary: number;
+  max_salary: number;
+  salary_range: string;
+  status: string;
+  kategori: string;
+  date: string;
+  pic: PIC;
+  requirements: string[];
+  description?: string;
+  company?: string;
+  education?: string;
+  gender?: string;
+  age?: string;
+  experience?: string;
 }
 
 export default function CarrierDetailPage() {
@@ -32,32 +40,32 @@ export default function CarrierDetailPage() {
     const fetchJobDetail = async () => {
       try {
         setLoading(true);
-        // Replace with your actual API endpoint
-        // const response = await fetch(`YOUR_API_ENDPOINT/jobs/${id}`);
-        // const data = await response.json();
-        // setJob(data);
+        const response = await fetch(`https://www.admin.padmaraharjasentosa.co.id/api/v1/karir/${id}`);
+        const result = await response.json();
         
-        // Dummy data
-        const dummyJob: JobDetail = {
-          id: id || '1',
-          title: 'Administrator',
-          company: 'PT Padma Raharja Sentosa',
-          location: 'Jakarta Barat, DKI Jakarta',
-          locationType: 'Full Time',
-          salaryMin: 3000000,
-          salaryMax: 4000000,
-          education: 'S1/S2',
-          gender: 'Male / Female',
-          age: '20-25 y/o',
-          experience: 'None',
-          description: `The Administrator is responsible for managing daily office operations, ensuring all administrative tasks run efficiently and smoothly. This includes handling documentation, coordinating meetings, maintaining records, and supporting internal teams with essential operational needs.
-
-Key responsibilities include preparing reports, managing correspondence, organizing schedules, and ensuring proper filing systems are maintained. The Administrator also acts as a point of contact for internal and external communication, providing timely support and information when needed.
-
-This position requires strong organizational skills, attention to detail, the ability to multitask, and proficiency with office software and communication tools.`
-        };
-
-        setJob(dummyJob);
+        if (result.data) {
+          const jobData: JobDetail = {
+            id: String(result.data.id),
+            title: result.data.title,
+            position: result.data.position,
+            location: result.data.location,
+            min_salary: result.data.min_salary,
+            max_salary: result.data.max_salary,
+            salary_range: result.data.salary_range,
+            status: result.data.status,
+            kategori: result.data.kategori,
+            date: result.data.date,
+            pic: result.data.pic || { id: 0, name: 'HR Team' },
+            requirements: result.data.requirements || [],
+            description: result.data.description || '',
+            company: 'PT Padma Raharja Sentosa',
+            education: result.data.education,
+            gender: result.data.gender,
+            age: result.data.age,
+            experience: result.data.experience
+          };
+          setJob(jobData);
+        }
         setLoading(false);
       } catch (error) {
         console.error('Error fetching job detail:', error);
@@ -69,11 +77,14 @@ This position requires strong organizational skills, attention to detail, the ab
     window.scrollTo(0, 0);
   }, [id]);
 
-  const formatSalary = (min: number, max: number) => {
-    const formatNumber = (num: number) => {
-      return `Rp${num.toLocaleString('id-ID')}`;
-    };
-    return `${formatNumber(min)} - ${formatNumber(max)}`;
+  const formatSalary = (salaryRange?: string, minSalary?: number, maxSalary?: number) => {
+    if (salaryRange) {
+      return salaryRange;
+    }
+    if (minSalary && maxSalary) {
+      return `Rp${minSalary.toLocaleString('id-ID')} - Rp${maxSalary.toLocaleString('id-ID')}`;
+    }
+    return 'Negotiable';
   };
 
   if (loading) {
@@ -153,19 +164,25 @@ This position requires strong organizational skills, attention to detail, the ab
               <div className="flex items-center gap-3">
                 <CheckCircle2 className="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0" />
                 <span className="text-gray-700 dark:text-gray-300 font-medium">
+                  {job.position}
+                </span>
+              </div>
+              <div className="flex items-center gap-3">
+                <CheckCircle2 className="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0" />
+                <span className="text-gray-700 dark:text-gray-300 font-medium">
                   {job.location}
                 </span>
               </div>
               <div className="flex items-center gap-3">
                 <CheckCircle2 className="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0" />
                 <span className="text-gray-700 dark:text-gray-300 font-medium">
-                  {job.locationType}
+                  {job.kategori === 'fulltime' ? 'Full Time' : job.kategori}
                 </span>
               </div>
               <div className="flex items-center gap-3">
                 <CheckCircle2 className="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0" />
                 <span className="text-gray-700 dark:text-gray-300 font-medium">
-                  {formatSalary(job.salaryMin, job.salaryMax)}
+                  {formatSalary(job.salary_range, job.min_salary, job.max_salary)}
                 </span>
               </div>
             </div>
@@ -175,63 +192,92 @@ This position requires strong organizational skills, attention to detail, the ab
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
                 {t('requirements')}
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-1" />
-                  <div>
-                    <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1">
-                      {t('lastHighestEducation')}
-                    </p>
-                    <p className="text-gray-600 dark:text-gray-400">
-                      {job.education}
-                    </p>
+              <div className="space-y-3">
+                {job.requirements.map((req, index) => (
+                  <div key={index} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-600 dark:text-gray-400">
+                      {req}
+                    </span>
                   </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-1" />
-                  <div>
-                    <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1">
-                      {t('gender')}
-                    </p>
-                    <p className="text-gray-600 dark:text-gray-400">
-                      {job.gender}
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-1" />
-                  <div>
-                    <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1">
-                      {t('age')}
-                    </p>
-                    <p className="text-gray-600 dark:text-gray-400">
-                      {job.age}
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-1" />
-                  <div>
-                    <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1">
-                      {t('experience')}
-                    </p>
-                    <p className="text-gray-600 dark:text-gray-400">
-                      {job.experience}
-                    </p>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
 
-            {/* Job Description */}
-            <div className="mb-8">
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-                {t('jobDescription')}
-              </h3>
-              <div className="text-gray-600 dark:text-gray-400 leading-relaxed whitespace-pre-line">
-                {job.description}
+            {/* Additional Info (if available) */}
+            {(job.education || job.gender || job.age || job.experience) && (
+              <div className="mb-8">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
+                  {t('additionalRequirements')}
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {job.education && (
+                    <div className="flex items-start gap-3">
+                      <CheckCircle2 className="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-1" />
+                      <div>
+                        <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1">
+                          {t('lastHighestEducation')}
+                        </p>
+                        <p className="text-gray-600 dark:text-gray-400">
+                          {job.education}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                  {job.gender && (
+                    <div className="flex items-start gap-3">
+                      <CheckCircle2 className="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-1" />
+                      <div>
+                        <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1">
+                          {t('gender')}
+                        </p>
+                        <p className="text-gray-600 dark:text-gray-400">
+                          {job.gender}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                  {job.age && (
+                    <div className="flex items-start gap-3">
+                      <CheckCircle2 className="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-1" />
+                      <div>
+                        <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1">
+                          {t('age')}
+                        </p>
+                        <p className="text-gray-600 dark:text-gray-400">
+                          {job.age}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                  {job.experience && (
+                    <div className="flex items-start gap-3">
+                      <CheckCircle2 className="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-1" />
+                      <div>
+                        <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1">
+                          {t('experience')}
+                        </p>
+                        <p className="text-gray-600 dark:text-gray-400">
+                          {job.experience}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
+            )}
+
+            {/* Job Description */}
+            {job.description && (
+              <div className="mb-8">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                  {t('jobDescription')}
+                </h3>
+                <div className="text-gray-600 dark:text-gray-400 leading-relaxed whitespace-pre-line">
+                  {job.description}
+                </div>
+              </div>
+            )}
 
             {/* Apply Button */}
             <div className="flex justify-end pt-6">

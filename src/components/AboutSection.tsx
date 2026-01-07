@@ -38,7 +38,22 @@ export default function AboutSection() {
         {/* Vision & Mission – Simple card layout like image */}
         <div className="grid gap-8 mb-20 max-w-4xl mx-auto">
           {/* Vision */}
-          <div className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 border border-gray-200 dark:border-gray-700 hover:bg-gradient-to-r hover:from-[#155DFB] hover:to-[#00B7DB] transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+          <div className="
+                group bg-white dark:bg-gray-800 rounded-2xl
+                shadow-lg p-8 border border-gray-200 dark:border-gray-700
+                hover:bg-gradient-to-r hover:from-[#155DFB] hover:to-[#00B7DB]
+                hover:shadow-2xl
+                transform-gpu
+                hover:-translate-y-1 hover:scale-[1.02]
+                transition-[transform,box-shadow,background]
+                duration-500
+                will-change-transform"
+              data-aos="fade-up"
+              data-aos-delay="200"
+              style={{
+                transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)',
+              }}
+            >
             <div className="flex items-start gap-6">
               <div className="p-4 bg-gray-100 dark:bg-gray-700 group-hover:bg-white/20 rounded-2xl flex-shrink-0 transition-all duration-300">
                 <Target className="w-8 h-8 text-gray-700 dark:text-gray-300 group-hover:text-white transition-colors duration-300" />
@@ -53,7 +68,23 @@ export default function AboutSection() {
           </div>
 
           {/* Mission */}
-          <div className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 border border-gray-200 dark:border-gray-700 hover:bg-gradient-to-r hover:from-[#155DFB] hover:to-[#00B7DB] transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+          <div className="
+                group bg-white dark:bg-gray-800 rounded-2xl
+                shadow-lg p-8 border border-gray-200 dark:border-gray-700
+                hover:bg-gradient-to-r hover:from-[#155DFB] hover:to-[#00B7DB]
+                hover:shadow-2xl
+                transform-gpu
+                hover:-translate-y-1 hover:scale-[1.02]
+                transition-[transform,box-shadow,background]
+                duration-500
+                will-change-transform
+              "
+              data-aos="fade-up"
+              data-aos-delay="300"
+              style={{
+                transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)',
+              }}
+            >
             <div className="flex items-start gap-6">
               <div className="p-4 bg-gray-100 dark:bg-gray-700 group-hover:bg-white/20 rounded-2xl flex-shrink-0 transition-all duration-300">
                 <Award className="w-8 h-8 text-gray-700 dark:text-gray-300 group-hover:text-white transition-colors duration-300" />
@@ -93,7 +124,7 @@ export default function AboutSection() {
           {values.map((value, index) => (
             <div
               key={index}
-              className="group relative bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg rounded-3xl p-8 text-center shadow-xl hover:shadow-2xl hover:-translate-y-3 hover:scale-105 hover:bg-gradient-to-t hover:from-[#155DFB] hover:to-[#00B7DB] transition-all duration-400 border border-gray-200/50 dark:border-gray-700/50"
+              className="group relative bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg rounded-3xl p-8 text-center shadow-xl hover:shadow-2xl hover:-translate-y-3 hover:scale-105 hover:bg-gradient-to-t hover:from-[#155DFB] hover:to-[#00B7DB] transform-gpu transition-all duration-500 ease-in-out border border-gray-200/50 dark:border-gray-700/50"
             >
               <div className="absolute inset-0 bg-gradient-to-t from-blue-600/10 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
               <div className="relative z-10">

@@ -21,7 +21,7 @@ export default function NewsPage() {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:8000/api/v1/news');
+        const response = await fetch('https://www.admin.padmaraharjasentosa.co.id/api/v1/news');
         const result = await response.json();
         
         if (result.data && Array.isArray(result.data)) {

@@ -65,15 +65,15 @@ export default function PartnerPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-gray-900">
       {/* Hero Section */}
       <section className="relative py-32 px-6 lg:px-8 overflow-hidden pt-20">
-        <div className="absolute inset-0 bg-white"></div>
+        <div className="absolute inset-0 bg-white dark:bg-gray-900"></div>
         <div className="relative max-w-7xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-blue-600 mb-6" data-aos="fade-up">
+          <h1 className="text-5xl md:text-6xl font-bold text-blue-600 dark:text-blue-400 mb-6" data-aos="fade-up">
             {t('partnerTitle')}
           </h1>
-          <p className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="200">
+          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="200">
             {t('partnerDesc')}
           </p>
           <div className="w-32 h-1 bg-blue-600 mx-auto rounded-full" data-aos="fade-up" data-aos-delay="300"></div>
@@ -81,10 +81,10 @@ export default function PartnerPage() {
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-20 px-6 lg:px-8 bg-gray-50">
+      <section className="py-20 px-6 lg:px-8 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-2xl mx-auto">
-          <div className="bg-white rounded-3xl shadow-xl p-8 md:p-12">
-            <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">
+          <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8 md:p-12">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white text-center mb-8">
               {t('getInTouch')}
             </h2>
 
@@ -103,7 +103,7 @@ export default function PartnerPage() {
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Name Field */}
               <div>
-                <label htmlFor="name" className="block text-sm font-semibold text-blue-600 mb-2">
+                <label htmlFor="name" className="block text-sm font-semibold text-blue-600 dark:text-blue-400 mb-2">
                   {t('partnerName')}
                 </label>
                 <input
@@ -114,13 +114,13 @@ export default function PartnerPage() {
                   onChange={handleInputChange}
                   placeholder={t('namePlaceholder')}
                   required
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200"
+                  className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200"
                 />
               </div>
 
               {/* Email Field */}
               <div>
-                <label htmlFor="email" className="block text-sm font-semibold text-blue-600 mb-2">
+                <label htmlFor="email" className="block text-sm font-semibold text-blue-600 dark:text-blue-400 mb-2">
                   {t('partnerEmail')}
                 </label>
                 <input
@@ -131,13 +131,13 @@ export default function PartnerPage() {
                   onChange={handleInputChange}
                   placeholder={t('emailPlaceholder')}
                   required
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200"
+                  className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200"
                 />
               </div>
 
               {/* Project Field */}
               <div>
-                <label htmlFor="project" className="block text-sm font-semibold text-blue-600 mb-2">
+                <label htmlFor="project" className="block text-sm font-semibold text-blue-600 dark:text-blue-400 mb-2">
                   {t('project')}
                 </label>
                 <input
@@ -148,13 +148,13 @@ export default function PartnerPage() {
                   onChange={handleInputChange}
                   placeholder={t('projectPlaceholder')}
                   required
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200"
+                  className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200"
                 />
               </div>
 
               {/* Project Scope Field */}
               <div>
-                <label htmlFor="projectScope" className="block text-sm font-semibold text-blue-600 mb-2">
+                <label htmlFor="projectScope" className="block text-sm font-semibold text-blue-600 dark:text-blue-400 mb-2">
                   {t('projectScope')}
                 </label>
                 <textarea
@@ -165,7 +165,7 @@ export default function PartnerPage() {
                   placeholder={t('projectScopePlaceholder')}
                   rows={6}
                   required
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200 resize-none"
+                  className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200 resize-none"
                 />
               </div>
 
@@ -174,7 +174,7 @@ export default function PartnerPage() {
                 <button
                   type="button"
                   onClick={handleCancel}
-                  className="flex-1 px-8 py-3 border-2 border-blue-600 text-blue-600 font-bold text-base rounded-full hover:bg-blue-50 transition-all duration-300"
+                  className="flex-1 px-8 py-3 border-2 border-blue-600 dark:border-blue-400 text-blue-600 dark:text-blue-400 font-bold text-base rounded-full hover:bg-blue-50 dark:hover:bg-gray-700 transition-all duration-300"
                 >
                   {t('cancel')}
                 </button>
