@@ -9,7 +9,7 @@ function FooterSection() {
   return (
     <footer className="bg-gray-900/95 dark:bg-black/95 backdrop-blur-lg text-white py-12 px-4 sm:px-6 lg:px-8 border-t border-gray-800/50">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-8 mb-8" data-aos="fade-up">
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div>
             <img src={logo} alt="Logo Padma Raharja Sentosa" style={{ width: '80px', height: '80px' }} className="mb-4"/>
 

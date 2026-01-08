@@ -52,15 +52,15 @@ export default function NewsPage() {
     : news.filter(item => item.tags.includes(selectedTag));
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900">
+    <div className="min-h-lvh bg-white dark:bg-gray-900">
       {/* Hero Section */}
       <section className="relative py-32 px-6 lg:px-8 overflow-hidden pt-20">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-white dark:from-gray-900 dark:to-gray-800"></div>
         <div className="relative max-w-7xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-blue-600 mb-6" data-aos="fade-up">
+          <h1 className="text-5xl md:text-6xl font-bold text-blue-600 mb-6">
             {t('newsAndUpdates')}
           </h1>
-          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
             {t('newsPageDesc')}
           </p>
         </div>
@@ -114,8 +114,6 @@ export default function NewsPage() {
                 <div
                   key={item.id}
                   className="bg-white dark:bg-gray-800 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden border border-gray-100 dark:border-gray-700"
-                  data-aos="fade-up"
-                  data-aos-delay={index * 100}
                 >
                   {/* Image */}
                   <div className="relative h-56 overflow-hidden">
