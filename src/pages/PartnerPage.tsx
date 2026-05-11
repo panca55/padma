@@ -76,10 +76,10 @@ export default function PartnerPage() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
       {/* Hero Section */}
-      <section className="relative py-32 px-6 lg:px-8 overflow-hidden pt-20">
+      <section className="relative py-20 sm:py-32 px-6 lg:px-8 overflow-hidden pt-20">
         <div className="absolute inset-0 bg-white dark:bg-gray-900"></div>
         <div className="relative max-w-7xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-blue-600 dark:text-blue-400 mb-6" data-aos="fade-up">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-blue-600 dark:text-blue-400 mb-6" data-aos="fade-up">
             {t('partnerTitle')}
           </h1>
           <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="200">

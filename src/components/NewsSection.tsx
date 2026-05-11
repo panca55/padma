@@ -121,13 +121,13 @@ export default function NewsSection() {
                   key={item.id}
                   className="w-full md:w-1/3 flex-shrink-0 px-4 my-4"
                 >
-                  <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col h-[520px]">
+                  <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col h-[400px] md:h-[520px]">
                     {/* Image */}
                     <div className="relative h-56 overflow-hidden flex-shrink-0">
                       <img
                         src={item.image}
                         alt={item.title}
-                        className="w-fit h-fit object-cover transition-transform duration-500 hover:scale-110"
+                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                       />
                       <div className="absolute top-4 right-4">
                         <span className="px-3 py-1 bg-blue-600 text-white text-xs font-semibold rounded-full">

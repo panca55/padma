@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ChevronRight, Upload } from 'lucide-react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface PIC {
   id: number;
@@ -75,92 +77,223 @@ export default function CarrierApplyPage() {
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      if (file.size > 10 * 1024 * 1024) {
-        alert(t('fileSizeExceeded'));
-        return;
-      }
-      setFormData(prev => ({
-        ...prev,
-        cv: file
-      }));
-      setFileName(file.name);
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const file = e.target.files?.[0];
+  if (file) {
+    // Validasi ukuran file (max 2MB)
+    const maxSize = 2 * 1024 * 1024; // 2MB dalam bytes
     
-    // Validate required fields
-    if (!formData.name || !formData.email || !formData.phone || !formData.address || !formData.education || !formData.age || !formData.previousPosition) {
-      alert(t('pleaseFillRequired') || 'Please fill all required fields');
+    console.log('File selected:', {
+      name: file.name,
+      size: `${(file.size / 1024 / 1024).toFixed(2)}MB`,
+      sizeBytes: file.size,
+      type: file.type,
+      lastModified: new Date(file.lastModified).toISOString()
+    });
+    
+    if (file.size > maxSize) {
+      toast.error(t('fileSizeExceeded') || `Ukuran file melebihi 2MB. Ukuran saat ini: ${(file.size / 1024 / 1024).toFixed(2)}MB`);
+      e.target.value = ''; // Reset input file
       return;
     }
-
-    if (!formData.cv) {
-      alert(t('pleaseUploadCV') || 'Please upload your CV');
+    
+    // Validasi tipe file - harus sesuai dengan backend: pdf, doc, docx
+    const allowedTypes = [
+      'application/pdf', 
+      'application/msword', 
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    ];
+    
+    const allowedExtensions = ['.pdf', '.doc', '.docx'];
+    const fileExtension = file.name.toLowerCase().substring(file.name.lastIndexOf('.'));
+    
+    // Cek MIME type ATAU extension (kadang browser Windows tidak set MIME type dengan benar)
+    if (!allowedTypes.includes(file.type) && !allowedExtensions.includes(fileExtension)) {
+      toast.error(t('invalidFileType') || `Hanya file PDF, DOC, dan DOCX yang diperbolehkan.\nFile type: ${file.type}\nExtension: ${fileExtension}`);
+      e.target.value = ''; // Reset input file
       return;
     }
-
-    if (!jobDetail) {
-      alert(t('jobNotFound') || 'Job information not found');
-      return;
-    }
-
-    try {
-      setSubmitting(true);
-
-      // Create FormData for multipart/form-data
-      const formDataToSend = new FormData();
-      formDataToSend.append('name', formData.name);
-      formDataToSend.append('address', formData.address);
-      formDataToSend.append('phone', formData.phone);
-      formDataToSend.append('email', formData.email);
-      formDataToSend.append('last_highest_education', formData.education);
-      formDataToSend.append('salary_expectation', formData.salaryExpectation ? String(Number(formData.salaryExpectation)) : '0');
-      formDataToSend.append('previous_job', formData.previousPosition);
-      formDataToSend.append('age', formData.age);
-      formDataToSend.append('cv', formData.cv);
-      formDataToSend.append('karir_id', id || '');
-      formDataToSend.append('user_id', String(jobDetail.pic.id));
-
-      // Submit to API
-      const response = await fetch('https://www.admin.padmaraharjasentosa.co.id/api/v1/applications', {
-        method: 'POST',
-        mode: 'cors',
-        credentials: 'omit',
-        body: formDataToSend,
-        headers: {
-          'Accept': 'application/json',
-        }
-        // Don't set Content-Type header, browser will set it automatically with boundary
+    
+    // Warning jika MIME type kosong atau tidak standar (tapi extension valid)
+    if (!allowedTypes.includes(file.type) && allowedExtensions.includes(fileExtension)) {
+      console.warn('File MIME type tidak standar, tapi extension valid:', {
+        type: file.type,
+        extension: fileExtension
       });
-
-      // console.log('Response status:', response.status);
-      // console.log('Response URL:', response.url);
-      // console.log('Response redirected:', response.redirected);
-
-      // Check if response was redirected (indicates backend issue)
-      if (response.redirected) {
-        throw new Error('Backend API melakukan redirect. Hubungi admin untuk perbaiki konfigurasi Laravel (periksa routes/api.php dan APP_URL di .env)');
-      }
-
-      const result = await response.json();
-
-      if (response.ok) {
-        alert(t('applicationSubmitted') || 'Application submitted successfully!');
-        navigate('/carrier');
-      } else {
-        throw new Error(result.message || 'Failed to submit application');
-      }
-    } catch (error: any) {
-      console.error('Error submitting application:', error);
-      alert(t('applicationFailed') || 'Failed to submit application. Please try again.');
-    } finally {
-      setSubmitting(false);
     }
-  };
+    
+    setFormData(prev => ({
+      ...prev,
+      cv: file
+    }));
+    setFileName(file.name);
+  }
+};
+
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  
+  // Validate required fields with specific error messages
+  const emptyFields = [];
+  
+  if (!formData.name) emptyFields.push(t('name') || 'Name');
+  if (!formData.address) emptyFields.push(t('address') || 'Address');
+  if (!formData.phone) emptyFields.push(t('phone') || 'Phone');
+  if (!formData.education) emptyFields.push(t('lastHighestEducation') || 'Education');
+  if (!formData.salaryExpectation) emptyFields.push(t('salaryExpectation') || 'Salary Expectation');
+  if (!formData.email) emptyFields.push(t('email') || 'Email');
+  if (!formData.previousPosition) emptyFields.push(t('previousPosition') || 'Previous Position');
+  if (!formData.age) emptyFields.push(t('age') || 'Age');
+  
+  if (emptyFields.length > 0) {
+    toast.error(`${t('pleaseFillRequired') || 'Please fill all required fields'}: ${emptyFields.join(', ')}`, { autoClose: 5000 });
+    return;
+  }
+
+  if (!formData.cv) {
+    toast.error(t('pleaseUploadCV') || 'Please upload your CV');
+    return;
+  }
+
+  if (!jobDetail) {
+    toast.error(t('jobNotFound') || 'Job information not found');
+    return;
+  }
+
+  try {
+    setSubmitting(true);
+
+    // Create FormData for multipart/form-data
+    const formDataToSend = new FormData();
+    formDataToSend.append('name', formData.name);
+    formDataToSend.append('address', formData.address);
+    formDataToSend.append('phone', formData.phone);
+    formDataToSend.append('email', formData.email);
+    formDataToSend.append('last_highest_education', formData.education);
+    formDataToSend.append('salary_expectation', formData.salaryExpectation ? String(Number(formData.salaryExpectation)) : '0');
+    formDataToSend.append('previous_job', formData.previousPosition);
+    formDataToSend.append('age', formData.age);
+    formDataToSend.append('cv', formData.cv, formData.cv.name); // Explicitly set filename
+    formDataToSend.append('karir_id', id || '');
+    formDataToSend.append('user_id', String(jobDetail.pic.id));
+
+    // Log untuk debugging
+    console.log('=== SUBMITTING APPLICATION ===');
+    console.log('Form Data:', {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      address: formData.address,
+      education: formData.education,
+      salary: formData.salaryExpectation,
+      previousJob: formData.previousPosition,
+      age: formData.age,
+      karirId: id,
+      userId: jobDetail.pic.id,
+    });
+    console.log('CV File:', {
+      name: formData.cv.name,
+      size: `${(formData.cv.size / 1024 / 1024).toFixed(2)}MB`,
+      sizeBytes: formData.cv.size,
+      type: formData.cv.type,
+      lastModified: new Date(formData.cv.lastModified).toISOString()
+    });
+    
+    // Log FormData contents (untuk debugging)
+    console.log('FormData entries:');
+    for (let pair of formDataToSend.entries()) {
+      if (pair[1] instanceof File) {
+        console.log(pair[0], ':', `[File: ${pair[1].name}, ${pair[1].size} bytes, ${pair[1].type}]`);
+      } else {
+        console.log(pair[0], ':', pair[1]);
+      }
+    }
+
+    // Submit to API
+    const response = await fetch('https://www.admin.padmaraharjasentosa.co.id/api/v1/applications', {
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'omit',
+      body: formDataToSend,
+      headers: {
+        'Accept': 'application/json',
+      }
+      // Don't set Content-Type header, browser will set it automatically with boundary
+    });
+
+    console.log('Response status:', response.status);
+    console.log('Response headers:', Object.fromEntries(response.headers.entries()));
+
+    // Check if response was redirected (indicates backend issue)
+    if (response.redirected) {
+      throw new Error('Backend API melakukan redirect. Hubungi admin untuk perbaiki konfigurasi Laravel (periksa routes/api.php dan APP_URL di .env)');
+    }
+
+    const result = await response.json();
+    console.log('Response body:', result);
+
+    if (response.ok) {
+      toast.success(t('applicationSubmitted') || 'Application submitted successfully!');
+      setTimeout(() => navigate('/carrier'), 1500);
+    } else {
+      // Log detailed error untuk debugging
+      console.error('=== VALIDATION ERROR ===');
+      console.error('Full response:', result);
+      
+      // Tampilkan pesan error yang lebih spesifik dari Laravel
+      let errorMessage = result.message || 'Failed to submit application';
+      
+      // Jika ada validation errors dari Laravel
+      if (result.errors) {
+        const errorDetails = Object.entries(result.errors)
+          .map(([field, messages]: [string, any]) => {
+            const fieldLabel = {
+              'name': 'Name',
+              'email': 'Email',
+              'phone': 'Phone',
+              'address': 'Address',
+              'last_highest_education': 'Education',
+              'salary_expectation': 'Salary Expectation',
+              'previous_job': 'Previous Position',
+              'age': 'Age',
+              'karir_id': 'Job ID',
+              'user_id': 'PIC ID',
+              'cv': 'CV File'
+            }[field] || field;
+            
+            return `${fieldLabel}: ${Array.isArray(messages) ? messages.join(', ') : messages}`;
+          })
+          .join('\n');
+        
+        console.error('Field errors:', result.errors);
+        
+        // Jika error CV upload, tambahkan info tambahan
+        if (result.errors.cv) {
+          errorMessage = `Gagal upload CV.\n\n` +
+            `File Anda: ${formData.cv.name} (${(formData.cv.size / 1024 / 1024).toFixed(2)}MB)\n\n` +
+            `Kemungkinan penyebab:\n` +
+            `1. Folder storage/app/public/cv tidak ada atau tidak punya permission write\n` +
+            `2. Disk space server penuh\n` +
+            `3. SELinux atau security policy memblokir write\n\n` +
+            `Detail error: ${Array.isArray(result.errors.cv) ? result.errors.cv.join(', ') : result.errors.cv}\n\n` +
+            `Harap hubungi administrator untuk memperbaiki konfigurasi server.`;
+        } else {
+          errorMessage = `Validation failed:\n${errorDetails}`;
+        }
+      }
+      
+      toast.error(errorMessage, { autoClose: 5000 });
+      throw new Error(errorMessage);
+    }
+  } catch (error: any) {
+    console.error('=== ERROR SUBMITTING ===');
+    console.error('Error:', error);
+    if (!error.message.includes('Validation failed') && !error.message.includes('Gagal upload')) {
+      toast.error(error.message || t('applicationFailed') || 'Failed to submit application. Please try again.');
+    }
+  } finally {
+    setSubmitting(false);
+  }
+};
 
   const handleCancel = () => {
     navigate(-1);
@@ -168,6 +301,7 @@ export default function CarrierApplyPage() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 pt-20 pb-20">
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} closeOnClick pauseOnHover theme="colored" />
       <div className="max-w-6xl mx-auto px-6 py-12">
         {/* Title */}
         <h1 className="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-4">

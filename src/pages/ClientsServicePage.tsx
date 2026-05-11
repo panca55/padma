@@ -7,7 +7,7 @@ import cimbFinance from '../assets/clients/cmbfinance.png';
 import ocbc from '../assets/clients/ocbc.png';
 import kbbukopin from '../assets/clients/kb.png';
 import alloBank from '../assets/clients/allo.png';
-import nobu from '../assets/clients/nobu.png';
+// import nobu from '../assets/clients/nobu.png';
 import mayapada from '../assets/clients/mayapada.png';
 import bankas from '../assets/clients/os.png';
 import ina from '../assets/clients/ina.png';
@@ -47,9 +47,9 @@ const staticClientServices: ClientService[] = [
   { id: 0, name: 'Allo Bank', logo: alloBank, services: [
     { type: 'Man Power Outsourcing', itemKeys: ['businessLeader', 'directSales', 'adminSupport', 'spgSpb'] }
   ]},
-  { id: 0, name: 'Nobu Bank', logo: nobu, services: [
-    { type: 'Man Power Outsourcing', itemKeys: ['supervisorTeamLeader', 'juniorSalesOfficer', 'seniorSalesOfficer'] }
-  ]},
+  // { id: 0, name: 'Nobu Bank', logo: nobu, services: [
+  //   { type: 'Man Power Outsourcing', itemKeys: ['supervisorTeamLeader', 'juniorSalesOfficer', 'seniorSalesOfficer'] }
+  // ]},
   { id: 0, name: 'Bank Mayapada', logo: mayapada, services: [
     { type: 'Man Power Outsourcing', itemKeys: ['supervisorTeamLeader', 'personalLoanSalesOfficer', 'creditCardSalesOfficer', 'directSales', 'telesales'] }
   ]},
@@ -131,7 +131,7 @@ export default function ClientsServicePage() {
       <section className="relative py-24 px-6 lg:px-8 overflow-hidden pt-20">
         <div className="absolute inset-0 bg-white dark:bg-gray-900"></div>
         <div className="relative max-w-7xl mx-auto text-center">
-          <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-[#155DFB] to-[#00B7DB] bg-clip-text text-transparent mb-6" data-aos="fade-up">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-[#155DFB] to-[#00B7DB] bg-clip-text text-transparent mb-6" data-aos="fade-up">
             {t('clientsServicesTitle')}
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="200">

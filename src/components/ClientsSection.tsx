@@ -5,7 +5,7 @@ import cimbFinance from '../assets/clients/cmbfinance.png';
 import ocbc from '../assets/clients/ocbc.png';
 import kbbukopin from '../assets/clients/kb.png';
 import alloBank from '../assets/clients/allo.png';
-import nobu from '../assets/clients/nobu.png';
+// import nobu from '../assets/clients/nobu.png';
 import mayapada from '../assets/clients/mayapada.png';
 import bankas from '../assets/clients/os.png';
 import ina from '../assets/clients/ina.png';
@@ -37,7 +37,7 @@ const staticClients: ClientLogo[] = [
   { id: 0, name: 'OCBC', logo: ocbc },
   { id: 0, name: 'KB Bukopin', logo: kbbukopin },
   { id: 0, name: 'Allo Bank', logo: alloBank },
-  { id: 0, name: 'Nobu Bank', logo: nobu },
+  // { id: 0, name: 'Nobu Bank', logo: nobu },
   { id: 0, name: 'Bank Mayapada', logo: mayapada },
   { id: 0, name: 'Bank AS', logo: bankas },
   { id: 0, name: 'Bank INA', logo: ina },
@@ -133,11 +133,11 @@ export default function ClientsSections() {
               </div> */}
 
               {/* Second Row: 5 logos */}
-              <div className="flex flex-wrap justify-center gap-8 mb-8">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-8">
                 {clientLogos.map((client, i) => (
                   <div
                     key={client.id || i}
-                    className="group relative flex items-center justify-center py-4 px-10 bg-white dark:bg-gray-800 backdrop-blur-lg rounded-2xl shadow-lg hover:shadow-2xl hover:scale-110 transition-all duration-300 border border-gray-200/50 dark:border-gray-700/50 hover:border-transparent"
+                    className="group relative flex items-center justify-center py-2 px-4 sm:py-4 sm:px-6 bg-white dark:bg-gray-800 backdrop-blur-lg rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 border border-gray-200/50 dark:border-gray-700/50 hover:border-transparent"
                   >
                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#155DFB] to-[#00B7DB] opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-[2px]">
                       <div className="w-full h-full bg-white dark:bg-gray-800 backdrop-blur-lg rounded-[14px]"></div>
@@ -146,7 +146,7 @@ export default function ClientsSections() {
                     <img
                       src={client.logo}
                       alt={client.name}
-                      className="relative z-10 w-40 h-40 object-contain filter dark:invert dark:brightness-0 dark:contrast-100"
+                      className="relative z-10 w-25 h-25 sm:w-2 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 object-contain filter dark:invert dark:brightness-0 dark:contrast-100"
                     />
                   </div>
                 ))}

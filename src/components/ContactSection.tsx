@@ -50,7 +50,7 @@ function ContactSection() {
               <div>
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">{t('otherOffice')}</h3>
                 
-                <div className="grid grid-cols-4 gap-x-8 gap-y-4 text-gray-600 dark:text-gray-400">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-8 gap-y-4 text-gray-600 dark:text-gray-400">
                   <div className="flex items-center">
                     <MapPin className="w-4 h-4 text-blue-600 dark:text-blue-400 mr-2" />
                     <span>Surabaya</span>

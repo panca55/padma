@@ -261,11 +261,11 @@ const resources = {
       selectEducation: 'Project name',
       selectSalary: 'Salary expectation',
       selectAge: 'Age',
-      attachmentMax: 'Attachment (Max 10mb)',
+      attachmentMax: 'Attachment (Max 2mb)',
       uploadFile: 'Upload File',
       selectedFile: 'Selected file',
       pleaseFillRequired: 'Please fill all required fields',
-      fileSizeExceeded: 'File size exceeds 10MB limit',
+      fileSizeExceeded: 'File size exceeds 2MB limit',
       applicationSubmitted: 'Application submitted successfully!'
     }
   },
@@ -345,7 +345,7 @@ const resources = {
       costEfficiencyDesc: 'Kurangi biaya operasional terkait perekrutan, pelatihan, gaji, dan manajemen karyawan.',
       regulatoryCompliance: 'Kepatuhan Regulasi',
       regulatoryComplianceDesc: 'Semua proses SDM dan kontrak kami mengikuti hukum ketenagakerjaan Indonesia — meminimalkan risiko hukum Anda.',
-
+      
       // Contact Section
       contactUsTitle: 'Informasi Kontak',
       letsGrow: 'Mari Tumbuh Bersama!',
@@ -527,11 +527,11 @@ const resources = {
       selectEducation: 'Nama proyek',
       selectSalary: 'Ekspektasi gaji',
       selectAge: 'Usia',
-      attachmentMax: 'Lampiran (Maks 10mb)',
+      attachmentMax: 'Lampiran (Maks 2mb)',
       uploadFile: 'Unggah File',
       selectedFile: 'File terpilih',
       pleaseFillRequired: 'Harap isi semua field yang wajib',
-      fileSizeExceeded: 'Ukuran file melebihi batas 10MB',
+      fileSizeExceeded: 'Ukuran file melebihi batas 2MB',
       applicationSubmitted: 'Lamaran berhasil dikirim!'
     }
   }

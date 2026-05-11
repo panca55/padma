@@ -57,7 +57,7 @@ export default function HeroSection() {
         <div className="grid lg:grid-cols-2 gap-8 items-center">
           {/* Left Side: Text & CTA */}
           <div className="text-white text-center lg:text-left order-2 lg:order-1" data-aos="fade-up">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold mb-4 leading-tight">
               {t('ptPadma')} <br />
             </h1>
 
